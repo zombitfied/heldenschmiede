@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D 5e / 2024 Charakter erstellen</title>
+    <title>Gewölbe und Flugechsen</title>
     
     <script>
         const savedTheme = localStorage.getItem('dnd_theme') || 'standard';
@@ -12,87 +12,25 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        html, body {
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        .book-wrapper {
+        body {
             display: flex;
-            width: 200vw;
-            transition: transform 0.4s ease-in-out;
-            pointer-events: none;
-        }
-        .book-page {
-            width: 100vw;
-            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
             padding: 16px;
-            padding-top: 16px;
-            padding-bottom: 105px;
+        }
+        .menu-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
             display: flex;
             justify-content: center;
-            pointer-events: auto;
-        }
-        .book-page .container {
-            width: 100%;
-            max-width: 600px;
+            align-items: center;
         }
 
-        /* Permanenter Footer mit abgerundeter, rauer SVG-Kante oben */
-        .page-footer-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--card);
-            border-top: 2px solid var(--border);
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
-            padding: 10px 16px;
-            box-sizing: border-box;
-            gap: 12px;
-            filter: url(#rough-edge);
-        }
-        
-        .footer-tab-btn {
-            background: var(--btn-back-bg);
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-weight: bold;
-            color: var(--text);
-            cursor: pointer;
-            font-family: serif;
-            font-size: 0.95rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            max-width: 300px;
-            transition: all 0.2s;
-            filter: url(#rough-edge);
-        }
-        .footer-tab-btn i {
-            font-size: 1rem;
-            color: var(--accent);
-        }
-        .footer-tab-btn:hover {
-            background: var(--accent);
-            color: var(--bg);
-        }
-        .footer-tab-btn:hover i {
-            color: var(--bg);
-        }
-
+        /* Debug-Reset-Button (Käfer) oben rechts */
         .btn-debug-reset {
             position: fixed;
             top: 16px;
@@ -119,1207 +57,285 @@
 </head>
 <body>
 
-<svg style="display:none;" aria-hidden="true">
-    <filter id="rough-edge">
-        <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-</svg>
-
-<div class="page-footer-nav" id="footerNavContainer">
-    <button type="button" class="footer-tab-btn" onclick="requestSwitchToSheet()">
-        <i class="fa-solid fa-shield-halved"></i> Zum Heldenbogen
+    <!-- Debug-Reset-Button (Käfer) -->
+    <button class="btn-debug-reset" onclick="resetLocalStorage()" title="Speicher komplett leeren (Reset)">
+        <i class="fa-solid fa-bug"></i>
     </button>
-</div>
 
-<button class="btn-debug-reset" onclick="resetLocalStorage()" title="Speicher komplett leeren (Reset)">
-    <i class="fa-solid fa-bug"></i>
-</button>
+    <!-- Fixer Pinsel-Button oben rechts in der Bildschirmecke -->
+    <button class="btn-theme-toggle" onclick="openThemeModal()" title="Design wählen">
+        <i class="fa-solid fa-paintbrush"></i>
+    </button>
 
-<button class="btn-theme-toggle" onclick="openThemeModal()" title="Design wählen">
-    <i class="fa-solid fa-paintbrush"></i>
-</button>
+    <svg style="display:none;" aria-hidden="true">
+        <filter id="rough-edge">
+            <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
 
-<div class="book-wrapper" id="bookWrapper">
-    <!-- SEITE 1: ERSTELLUNG -->
-    <div class="book-page">
-        <div class="container" style="max-width:100%;">
-            <div class="top-nav" style="justify-content: space-between;">
-                <a href="index.html" class="btn-back">
-                    <i class="fa-solid fa-arrow-left"></i> Zum Eingang
-                </a>
+    <div class="menu-container">
+        <div class="logo-frame">
+            <div class="fantasy-landscape-icons" style="font-size: 1.5rem; color: var(--accent); margin-bottom: 12px; display: flex; justify-content: center; gap: 16px;">
+                <i class="fa-solid fa-mountain"></i>
+                <i class="fa-solid fa-chess-rook"></i>
+                <i class="fa-solid fa-dragon"></i>
             </div>
 
-            <div class="page-title">Held/in erstellen</div>
+            <h1 style="font-size: 0.9rem; color: var(--text-muted); margin: 0 0 2px 0; text-transform: uppercase; font-family: serif; letter-spacing: 0.5px;">Gewölbe und Flugechsen</h1>
+            <div style="font-size: 1.6rem; color: var(--text); font-weight: bold; margin-bottom: 4px; text-transform: uppercase; font-family: serif;">Heldenschmiede</div>
+            <div class="subtitle" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; font-style: italic;">v.0.0.1</div>
 
-            <div class="step-card">
-                <div class="step-title">Identität & Volk</div>
-                <div>
-                    <label for="char-name">Name</label>
-                    <input type="text" id="char-name" value="Gimble">
-                </div>
-                <div class="grid-race" style="margin-top: 8px;">
-                    <div>
-                        <label for="main-race">Volk</label>
-                        <div class="input-row">
-                            <select id="main-race" onchange="onMainRaceChange()"></select>
-                        </div>
-                    </div>
-                    <div id="subrace-container" style="display: none;">
-                        <label for="sub-race">Abstammung</label>
-                        <div class="input-row">
-                            <select id="sub-race" onchange="updateSubraceOptions()"></select>
-                            <button type="button" class="info-btn" onclick="showRaceModal()">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="special-attr-container" class="special-attribute-box">
-                    <label id="special-attr-label">Spezial-Attribut wählen:</label>
-                    <select id="special-attr-select"></select>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Klasse und Hintergrund</div>
-                <div class="grid-2">
-                    <div>
-                        <label for="class-select">Klasse</label>
-                        <div class="input-row">
-                            <select id="class-select" onchange="onClassChange()"></select>
-                            <button type="button" class="info-btn" id="class-info-btn" onclick="showClassModal()"><i class="fa-solid fa-wrench" id="class-icon-indicator"></i></button>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="bg-select">Hintergrund</label>
-                        <div class="input-row">
-                            <select id="bg-select" onchange="onBgChange()"></select>
-                            <button type="button" class="info-btn" onclick="showBgModal()">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 12px; background: var(--btn-back-bg); padding: 10px; border-radius: 8px; border: 1.5px solid var(--border);">
-                    <label for="bg-asi-mode" style="margin-top:0; color:var(--accent);">Hintergrund-Attributsbonus (+3 Punkte):</label>
-                    <select id="bg-asi-mode" onchange="onBgAsiModeChange()" style="margin-top:4px; margin-bottom:8px;">
-                        <option value="2_1">+2 auf ein Attribut, +1 auf ein anderes</option>
-                        <option value="1_1_1">+1 auf drei verschiedene Attribute</option>
-                    </select>
-                    <div id="bg-asi-slots" class="grid-3" style="gap:6px;"></div>
-                    <div id="bg-asi-error" class="error" style="display:none;">Wähle unterschiedliche Attribute ohne Dopplungen innerhalb der Boni!</div>
-                </div>
-
-                <div id="bg-dynamic-options-container" style="margin-top: 12px; display: none; background: var(--btn-back-bg); padding: 10px; border-radius: 8px; border: 1.5px solid var(--border);">
-                    <div id="bg-tool-choice-wrapper" style="margin-bottom: 8px; display: none;">
-                        <label id="bg-tool-label" style="margin-top:0; color:var(--accent);">Werkzeug-Wahl:</label>
-                        <select id="bg-tool-select" style="margin-top:4px;"></select>
-                    </div>
-                    <div id="bg-eq-choice-wrapper" style="display: none;">
-                        <label id="bg-eq-label" style="margin-top:0; color:var(--accent);">Startausrüstung (Paket wählen):</label>
-                        <select id="bg-eq-select" style="margin-top:4px;">
-                            <option value="A">Option A (Ausrüstungspaket + Gold)</option>
-                            <option value="B">Option B (50 Goldstücke)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Start-Attribute zuweisen</div>
-                <div class="grid-3">
-                    <div><label>Stärke</label><select class="array-select" id="str-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Geschicklichkeit</label><select class="array-select" id="dex-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Konstitution</label><select class="array-select" id="con-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Intelligenz</label><select class="array-select" id="int-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Weisheit</label><select class="array-select" id="wis-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Charisma</label><select class="array-select" id="cha-val" onchange="onStatsChange()"></select></div>
-                </div>
-                <div id="array-error" class="error">Wähle 15, 14, 13, 12, 10, 8 ohne Dopplungen!</div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Fertigkeiten wählen</div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div>
-                        <label for="skill1">Fertigkeit 1</label>
-                        <div class="input-row">
-                            <select id="skill1" onchange="validateSkills()"></select>
-                            <button type="button" class="info-btn" onclick="showSkillModal('skill1')">ℹ</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="skill2">Fertigkeit 2</label>
-                        <div class="input-row">
-                            <select id="skill2" onchange="validateSkills()"></select>
-                            <button type="button" class="info-btn" onclick="showSkillModal('skill2')">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="skill-error" class="error">Wähle 2 verschiedene Fertigkeiten, die sich nicht mit deinem Hintergrund überschneiden!</div>
-            </div>
-
-            <div class="step-card" id="spells-step-card" style="margin-bottom: 20px;">
-                <div class="step-title">Klassen-Zauber wählen</div>
-                <label id="cantrip-label">Zaubertricks wählen</label>
-                <div class="spell-container" id="cantrips-group"></div>
-
-                <label id="prep-spells-label" style="margin-top:15px;">Stufe 1 Zauber wählen:</label>
-                <div class="spell-container" id="level1-group"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEITE 2: HELD / CHARAKTERBLATT -->
-    <div class="book-page">
-        <div class="container" style="max-width:100%;">
-            <div id="sheet" class="sheet" style="display: block; margin-top: 10px; margin-bottom: 20px;">
-                <h2 id="screen-out-name" style="margin-top:0; color:var(--accent);"></h2>
-                <div id="screen-out-meta" style="font-size:0.9rem; color:var(--text-muted); text-align:center; margin-bottom:10px;"></div>
-                
-                <div style="margin-bottom: 12px;">
-                    <span class="badge" id="screen-out-hp" onclick="showCalcModal('HP')"></span>
-                    <span class="badge" id="screen-out-ac" onclick="showCalcModal('RK')"></span>
-                    <span class="badge" id="screen-out-init" onclick="showCalcModal('Initiative')"></span>
-                    <span class="badge" id="screen-out-prof" onclick="showCalcModal('Übungsbonus')">Übungsbonus: +2</span>
-                    <span class="badge" id="screen-out-speed" onclick="showCalcModal('Bewegungsrate')"></span>
-                </div>
-
-                <h3 style="color:var(--accent);">Attributswerte & Modifikatoren</h3>
-                <div class="grid-3" id="screen-out-stats" style="margin-bottom:15px;"></div>
-
-                <h3 style="color:var(--accent);">Fertigkeiten & Merkmale</h3>
-                <ul id="screen-out-features" style="margin-bottom:15px;"></ul>
-
-                <h3 style="color:var(--accent);">Ausrüstung & Waffen-Konfiguration</h3>
-                <div id="sheet-equipment-controls" style="background:var(--btn-back-bg); padding:12px; border-radius:6px; border:1.5px solid var(--border); margin-bottom:15px;"></div>
-
-                <h3 style="color:var(--accent);">Zauber & Zaubertricks Übersicht</h3>
-                <div id="screen-out-spells" style="margin-bottom:20px;"></div>
-
-                <div style="display: flex; gap: 10px; margin-top: 15px;">
-                    <button class="btn-gray-main" onclick="manualSaveCharacter()" style="margin-top:0; width: 100%;">
-                        <i class="fa-solid fa-floppy-disk"></i> Held speichern
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL: Änderungen übernehmen Abfrage -->
-<div id="change-confirm-modal" class="modal-overlay" style="display:none; z-index: 9999;">
-    <div class="modal-content" style="text-align: center; max-width: 340px;">
-        <div class="modal-title" style="justify-content: center;">
-            <span>Änderungen übernehmen?</span>
-        </div>
-        <div class="modal-body" style="font-size: 0.9rem; color: var(--text); margin: 15px 0;">
-            <span>Möchtest du die aktuellen Änderungen aus dem Formular für deinen Helden übernehmen?</span>
-        </div>
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-            <button onclick="confirmPageSwitch(true)" class="main-btn" style="flex: 1; background: var(--accent); color: var(--bg); border: 1.5px solid var(--accent); margin-bottom: 0; font-weight:bold;">Ja</button>
-            <button onclick="confirmPageSwitch(false)" class="main-btn" style="flex: 1; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0;">Nein</button>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL: Einheitlicher Hinweis-Dialog (Custom Alert) -->
-<div id="custom-alert-modal" class="modal-overlay" style="display:none; z-index: 10000;">
-    <div class="modal-content" style="text-align: center; max-width: 320px;">
-        <div class="modal-title" style="justify-content: center;">
-            <span id="custom-alert-title">Hinweis</span>
-        </div>
-        <div class="modal-body" id="custom-alert-text" style="font-size: 0.9rem; color: var(--text); margin: 15px 0; font-weight: bold;">
-            Nachricht...
-        </div>
-        <button onclick="closeCustomAlert()" class="main-btn" style="background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0; width: 100%;">OK</button>
-    </div>
-</div>
-
-<div id="theme-modal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-title">
-            <span>Design wählen</span>
-        </div>
-        
-        <div class="modal-body" style="overflow: visible;">
-            <button class="theme-option-btn" onclick="setTheme('standard')">
-                <span><i class="fa-solid fa-scroll" style="color: var(--accent); margin-right: 8px;"></i> Standard (Pergament)</span>
-                <i class="fa-solid fa-check" id="check-standard" style="display:none; color: var(--accent);"></i>
+            <a href="creator.html?mode=create" class="btn-gold-main">
+                <i class="fa-solid fa-user-plus"></i> Helden erschaffen
+            </a>
+            
+            <button class="btn-menu-main" onclick="openCharacterModal()">
+                <i class="fa-solid fa-person-arrow-up-from-line"></i> Helden laden
             </button>
-            <button class="theme-option-btn" onclick="setTheme('dungeon')">
-                <span><i class="fa-solid fa-moon" style="color: var(--accent); margin-right: 8px;"></i> Dungeon (Dark Mode)</span>
-                <i class="fa-solid fa-check" id="check-dungeon" style="display:none; color: var(--accent);"></i>
+            
+            <button class="btn-menu-main" onclick="openGraveyardModal()" style="color: var(--text-muted); margin-bottom: 0;">
+                <i class="fa-solid fa-monument"></i> Heldenfriedhof
             </button>
         </div>
-
-        <button class="btn-gray-main" onclick="closeThemeModal()" style="margin-top: 10px;">Schließen</button>
     </div>
-</div>
 
-<div class="modal-overlay" id="rule-modal" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <div class="modal-title" id="modal-title">Regeldetails</div>
-        <div id="modal-subtitle-container"></div>
-        <div class="modal-body" id="modal-body">Beschreibungstext...</div>
+    <!-- MODAL: Design / Theme Auswahl -->
+    <div id="theme-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">
+                <span>Design wählen<br></span>
+            </div>
+            
+            <div class="modal-body" style="overflow: visible;">
+                <button class="theme-option-btn" onclick="setTheme('standard')">
+                    <span><i class="fa-solid fa-scroll" style="color: var(--accent); margin-right: 8px;"></i> Standard (Pergament)</span>
+                    <i class="fa-solid fa-check" id="check-standard" style="display:none; color: var(--accent);"></i>
+                </button>
+                <button class="theme-option-btn" onclick="setTheme('dungeon')">
+                    <span><i class="fa-solid fa-moon" style="color: var(--accent); margin-right: 8px;"></i> Dungeon (Dark Mode)</span>
+                    <i class="fa-solid fa-check" id="check-dungeon" style="display:none; color: var(--accent);"></i>
+                </button>
+            </div>
+
+            <button class="btn-gray-main" onclick="closeThemeModal()" style="margin-top: 10px;">Schließen</button>
+        </div>
     </div>
-</div>
 
-<script>
-let currentPage = 'create';
-let lastBuiltCharacter = null;
+    <!-- MODAL: Charakter-Auswahl -->
+    <div id="char-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">
+                <span>Wähle deinen Helden</span>
+            </div>
+            
+            <div id="character-list-container" class="modal-body" style="max-height: 40vh; display: flex; flex-direction: column; gap: 10px;"></div>
 
-function showCustomAlert(text, title = "Hinweis") {
-    document.getElementById('custom-alert-title').innerText = title;
-    document.getElementById('custom-alert-text').innerText = text;
-    document.getElementById('custom-alert-modal').style.display = 'flex';
-}
+            <button class="main-btn" onclick="closeCharacterModal()" style="margin-top: 10px; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border);">Abbrechen</button>
+        </div>
+    </div>
 
-function closeCustomAlert() {
-    document.getElementById('custom-alert-modal').style.display = 'none';
-}
+    <!-- MODAL: Heldenfriedhof -->
+    <div id="graveyard-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">
+                <span><i class="fa-solid fa-monument"></i> Heldenfriedhof</span>
+            </div>
+            
+            <div id="graveyard-list-container" class="modal-body" style="max-height: 40vh; display: flex; flex-direction: column; gap: 10px;"></div>
 
-function requestSwitchToSheet() {
-    document.getElementById('change-confirm-modal').style.display = 'flex';
-}
+            <button class="btn-gray-main" onclick="closeGraveyardModal()" style="margin-top: 10px; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border);">Schließen</button>
+        </div>
+    </div>
 
-function confirmPageSwitch(doSave) {
-    document.getElementById('change-confirm-modal').style.display = 'none';
-    if (doSave) {
-        buildCharacterAndSave();
-    } else {
-        loadExistingOrFallbackCharacter();
-    }
-    executePageSwitch('sheet');
-}
+    <!-- MODAL: Custom Confirm Dialog (im Seiten-Design) -->
+    <div id="custom-confirm-modal" class="modal-overlay" style="display:none; z-index: 9999;">
+        <div class="modal-content" style="text-align: center; max-width: 320px;">
+            <div class="modal-title" style="justify-content: center;">
+                <span id="confirm-title">Titel</span>
+            </div>
+            <div class="modal-body" style="font-size: 0.9rem; color: var(--text); margin: 15px 0;">
+                <div id="confirm-text" style="font-weight: bold; margin-bottom: 8px;">Frage</div>
+                <div id="confirm-subtext" style="font-size: 0.75rem; color: var(--text-muted); font-style: italic;">Untertext</div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="confirm-yes-btn" class="main-btn" style="flex: 1; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0;">Ja</button>
+                <button id="confirm-no-btn" class="main-btn" style="flex: 1; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0;">Nein</button>
+            </div>
+        </div>
+    </div>
 
-function switchToCreate() {
-    if (lastBuiltCharacter) {
-        loadCharacterIntoCreator(lastBuiltCharacter);
-    }
-    executePageSwitch('create');
-}
-
-function executePageSwitch(targetPage) {
-    currentPage = targetPage;
-    const wrapper = document.getElementById('bookWrapper');
-    const footerContainer = document.getElementById('footerNavContainer');
-
-    if (targetPage === 'sheet') {
-        wrapper.style.transform = 'translateX(-100vw)';
-        footerContainer.innerHTML = `
-            <button type="button" class="footer-tab-btn" onclick="switchToCreate()">
-                <i class="fa-solid fa-feather"></i> Held bearbeiten
-            </button>
-        `;
-    } else {
-        wrapper.style.transform = 'translateX(0vw)';
-        footerContainer.innerHTML = `
-            <button type="button" class="footer-tab-btn" onclick="requestSwitchToSheet()">
-                <i class="fa-solid fa-shield-halved"></i> Zum Heldenbogen
-            </button>
-        `;
-    }
-}
-
-function openThemeModal() {
-    const current = localStorage.getItem('dnd_theme') || 'standard';
-    document.getElementById('check-standard').style.display = current === 'standard' ? 'inline' : 'none';
-    document.getElementById('check-dungeon').style.display = current === 'dungeon' ? 'inline' : 'none';
-    document.getElementById('theme-modal').style.display = 'flex';
-}
-function closeThemeModal() { document.getElementById('theme-modal').style.display = 'none'; }
-function setTheme(themeName) {
-    localStorage.setItem('dnd_theme', themeName);
-    document.documentElement.setAttribute('data-theme', themeName);
-    closeThemeModal();
-}
-
-// =========================================
-// NEUE JSON-URLS (ANPASST!)
-// =========================================
-const RACES_JSON_URL = "./rassen.json";
-const BACKGROUNDS_JSON_URL = "./hintergruende.json";
-const CLASSES_JSON_URL = "./klassen.json";
-const SPELLS_JSON_URL = "./zauber.json";
-
-const standardArray = [15, 14, 13, 12, 10, 8];
-
-const attributeDescriptions = {
-    "STR": "<b>Stärke:</b> Athletik, Nahkampfangriffe, Tragekapazität.",
-    "DEX": "<b>Geschicklichkeit:</b> Akrobatik, Fingerfertigkeit, Heimlichkeit, RK, Initiative.",
-    "CON": "<b>Konstitution:</b> Trefferpunkte, Konzentrationswürfe.",
-    "INT": "<b>Intelligenz:</b> Arkankunde, Geschichte, Untersuchung, Naturkunde, Religion.",
-    "WIS": "<b>Weisheit:</b> Tierumgang, Einblick, Heilkunde, Wahrnehmung, Überleben.",
-    "CHA": "<b>Charisma:</b> Täuschen, Einschüchtern, Auftreten, Überzeugen."
-};
-
-const attrNamesDE = {
-    "STR": "Stärke", "DEX": "Geschicklichkeit", "CON": "Konstitution",
-    "INT": "Intelligenz", "WIS": "Weisheit", "CHA": "Charisma"
-};
-
-// =========================================
-// DATEN-STRUKTUREN (WERDEN AUS JSON GELADEN)
-// =========================================
-let speciesData = {};
-let backgrounds = {};
-let classData = {};
-let allSpells = { cantrips: {}, level1: {} };
-
-window.onload = async function() {
-    try {
-        // RASSEN LADEN (rassen.json)
-        const racesResponse = await fetch(RACES_JSON_URL + "?t=" + Date.now());
-        if (!racesResponse.ok) throw new Error(`HTTP Fehler: rassen.json (${racesResponse.status})`);
-        const racesData = await racesResponse.json();
-        speciesData = racesData.races || {};
-
-        // HINTERGRÜNDE LADEN (hintergruende.json)
-        const bgResponse = await fetch(BACKGROUNDS_JSON_URL + "?t=" + Date.now());
-        if (bgResponse.ok) {
-            const bgData = await bgResponse.json();
-            backgrounds = bgData.backgrounds || bgData;
-        } else {
-            throw new Error(`HTTP Fehler: hintergruende.json (${bgResponse.status})`);
+    <script>
+        function openThemeModal() {
+            const current = localStorage.getItem('dnd_theme') || 'standard';
+            document.getElementById('check-standard').style.display = current === 'standard' ? 'inline' : 'none';
+            document.getElementById('check-dungeon').style.display = current === 'dungeon' ? 'inline' : 'none';
+            document.getElementById('theme-modal').style.display = 'flex';
+        }
+        function closeThemeModal() { document.getElementById('theme-modal').style.display = 'none'; }
+        function setTheme(themeName) {
+            localStorage.setItem('dnd_theme', themeName);
+            document.documentElement.setAttribute('data-theme', themeName);
+            closeThemeModal();
         }
 
-        // KLASSEN LADEN (klassen.json) - Enthält Klasseninfos + Spellcasting!
-        const classesResponse = await fetch(CLASSES_JSON_URL + "?t=" + Date.now());
-        if (classesResponse.ok) {
-            const classesRaw = await classesResponse.json();
-            classData = classesRaw.classes || classesRaw;
-        } else {
-            throw new Error(`HTTP Fehler: klassen.json (${classesResponse.status})`);
+        function getStoredCharacters() {
+            let characters = [];
+            const savedList = localStorage.getItem('dnd_character_list');
+            const singleSaved = localStorage.getItem('dnd_active_character');
+            if (savedList) { try { characters = JSON.parse(savedList); } catch(e) {} }
+            else if (singleSaved) { try { characters = [JSON.parse(singleSaved)]; } catch(e) {} }
+            return characters;
         }
+        function saveStoredCharacters(characters) { localStorage.setItem('dnd_character_list', JSON.stringify(characters)); }
 
-        // ZAUBER LADEN (zauber.json)
-        const spellsResponse = await fetch(SPELLS_JSON_URL + "?t=" + Date.now());
-        if (spellsResponse.ok) {
-            const spellsRaw = await spellsResponse.json();
-            // Zauber nach Level kategorisieren
-            const spellsObj = spellsRaw.spells || {};
-            for (let spellName in spellsObj) {
-                const spell = spellsObj[spellName];
-                if (spell.level === 0) {
-                    allSpells.cantrips[spellName] = spell;
-                } else if (spell.level === 1) {
-                    allSpells.level1[spellName] = spell;
-                }
+        function openCharacterModal() {
+            const container = document.getElementById('character-list-container');
+            container.innerHTML = '';
+            const characters = getStoredCharacters().filter(c => !c.archived);
+            if (characters.length === 0) {
+                container.innerHTML = `<div style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Keine aktiven Helden gefunden...</div>`;
+            } else {
+                characters.forEach((char) => {
+                    const item = document.createElement('div');
+                    item.style.cssText = "background: var(--btn-back-bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;";
+                    item.onclick = () => selectCharacter(char.id);
+                    item.innerHTML = `
+                        <div>
+                            <div style="font-weight: bold; color: var(--text);">${char.name || "Held"} (Stufe ${char.level || 1})</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">${char.class || "-"} | ${char.species || "-"}</div>
+                        </div>
+                        <button onclick="handleArchiveClick(event, '${char.id}', '${char.name || "Held"}')" style="background:none; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; flex-shrink:0;"><i class="fa-solid fa-monument" style="font-size: 1.4rem; color: var(--text-muted);"></i></button>
+                    `;
+                    container.appendChild(item);
+                });
             }
-        } else {
-            console.warn("Warnung: Zauber-JSON konnte nicht geladen werden");
+            document.getElementById('char-modal').style.display = 'flex';
+        }
+        function closeCharacterModal() { document.getElementById('char-modal').style.display = 'none'; }
+        
+        function selectCharacter(id) {
+            let characters = getStoredCharacters();
+            const index = characters.findIndex(c => c.id === id);
+            if (index >= 0) {
+                characters[index].lastAccess = new Date().toISOString();
+                saveStoredCharacters(characters);
+                localStorage.setItem('dnd_active_character', JSON.stringify(characters[index]));
+            }
+            // Leitet direkt zum Creator im Sheet-Modus weiter, damit er auf dem Heldenbogen landet
+            window.location.href = 'creator.html?mode=sheet';
         }
 
-        initApp();
-        handleUrlModeAndStartup();
-    } catch (err) {
-        showCustomAlert("Ladefehler: " + err.message, "Fehler");
-    }
-};
-
-function handleUrlModeAndStartup() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const mode = urlParams.get('mode');
-
-    if (mode === 'create') {
-        localStorage.removeItem('dnd_active_character');
-        lastBuiltCharacter = null;
-        executePageSwitch('create');
-    } else {
-        const activeCharJson = localStorage.getItem('dnd_active_character');
-        if (activeCharJson) {
-            try {
-                const char = JSON.parse(activeCharJson);
-                lastBuiltCharacter = char;
-                loadCharacterIntoCreator(char);
-                renderCharacterToSheet(char);
-                executePageSwitch('sheet');
-                return;
-            } catch (e) {}
-        }
-        buildCharacterAndSave();
-        executePageSwitch('create');
-    }
-}
-
-function loadExistingOrFallbackCharacter() {
-    const activeCharJson = localStorage.getItem('dnd_active_character');
-    if (activeCharJson) {
-        try {
-            lastBuiltCharacter = JSON.parse(activeCharJson);
-            renderCharacterToSheet(lastBuiltCharacter);
-            return;
-        } catch (e) {}
-    }
-    buildCharacterAndSave();
-}
-
-function loadCharacterIntoCreator(char) {
-    if (!char) return;
-    if (char.name && document.getElementById('char-name')) document.getElementById('char-name').value = char.name;
-    
-    if (char.mainRace && document.getElementById('main-race')) {
-        document.getElementById('main-race').value = char.mainRace;
-        onMainRaceChange();
-    }
-    if (char.species && document.getElementById('sub-race')) {
-        document.getElementById('sub-race').value = char.species;
-    }
-    
-    if (char.class && document.getElementById('class-select')) {
-        document.getElementById('class-select').value = char.class;
-        onClassChange();
-    }
-
-    if (char.background && document.getElementById('bg-select')) {
-        document.getElementById('bg-select').value = char.background;
-        onBgChange();
-    }
-
-    if (char.rawStats) {
-        if (document.getElementById('str-val')) document.getElementById('str-val').value = char.rawStats.STR;
-        if (document.getElementById('dex-val')) document.getElementById('dex-val').value = char.rawStats.DEX;
-        if (document.getElementById('con-val')) document.getElementById('con-val').value = char.rawStats.CON;
-        if (document.getElementById('int-val')) document.getElementById('int-val').value = char.rawStats.INT;
-        if (document.getElementById('wis-val')) document.getElementById('wis-val').value = char.rawStats.WIS;
-        if (document.getElementById('cha-val')) document.getElementById('cha-val').value = char.rawStats.CHA;
-    }
-
-    if (char.skills && char.skills.length >= 2) {
-        const bgSkills = backgrounds[char.background]?.skills || [];
-        const customSkills = char.skills.filter(s => !bgSkills.includes(s));
-        if (customSkills[0] && document.getElementById('skill1')) document.getElementById('skill1').value = customSkills[0];
-        if (customSkills[1] && document.getElementById('skill2')) document.getElementById('skill2').value = customSkills[1];
-    }
-}
-
-function buildCharacterAndSave() {
-    if (!validateArray() || !validateSkills() || !validateBgAsi()) {
-        showCustomAlert("Bitte behebe alle Validierungsfehler im Formular!", "Achtung");
-        return;
-    }
-
-    const name = document.getElementById('char-name').value || "Unbenannter Held";
-    const mainRace = document.getElementById('main-race').value || Object.keys(speciesData)[0];
-    const subRace = document.getElementById('sub-race').value || Object.keys(speciesData[mainRace]?.subraces || {})[0];
-    const clsName = document.getElementById('class-select').value || "Kämpfer";
-    const bg = document.getElementById('bg-select').value || Object.keys(backgrounds)[0];
-    const subInfo = speciesData[mainRace]?.subraces[subRace] || { bonus: {}, speed: 30 };
-
-    let rawStats = {
-        STR: parseInt(document.getElementById('str-val')?.value) || 15,
-        DEX: parseInt(document.getElementById('dex-val')?.value) || 14,
-        CON: parseInt(document.getElementById('con-val')?.value) || 13,
-        INT: parseInt(document.getElementById('int-val')?.value) || 12,
-        WIS: parseInt(document.getElementById('wis-val')?.value) || 10,
-        CHA: parseInt(document.getElementById('cha-val')?.value) || 8
-    };
-
-    let speciesBonuses = subInfo.bonus || {};
-    let bgBonuses = getBgBonuses();
-
-    let stats = { ...rawStats };
-    for (let s in stats) {
-        if (speciesBonuses[s]) stats[s] += speciesBonuses[s];
-        if (bgBonuses[s]) stats[s] += bgBonuses[s];
-    }
-
-    let mods = {};
-    for (let s in stats) mods[s] = getMod(stats[s]);
-
-    // HP aus Klassen-JSON (TODO: Falls nicht verfügbar, Fallback-Werte)
-    const clsInfo = classData[clsName];
-    const hpBase = clsInfo?.hpAt1stLevel ? parseInt(clsInfo.hpAt1stLevel) || 8 : 8;
-    const hp = hpBase + mods.CON;
-    const ac = 10 + mods.DEX;
-
-    let chosenCantrips = Array.from(document.querySelectorAll('.char-cantrip-select')).map(s => s.value).filter(Boolean);
-    let chosenSpells = Array.from(document.querySelectorAll('.char-spell-select')).map(s => s.value).filter(Boolean);
-    const allSkills = [...(backgrounds[bg]?.skills || []), document.getElementById('skill1')?.value, document.getElementById('skill2')?.value].filter(Boolean);
-
-    const charId = (lastBuiltCharacter && lastBuiltCharacter.id) ? lastBuiltCharacter.id : 'char_' + Date.now();
-
-    lastBuiltCharacter = {
-        id: charId, 
-        name, 
-        class: clsName, 
-        species: subRace, 
-        mainRace: mainRace,
-        background: bg,
-        level: 1, 
-        hp, 
-        maxHp: hp, 
-        ac, 
-        speed: subInfo.speed || 30, 
-        stats, 
-        mods, 
-        rawStats,
-        skills: allSkills, 
-        cantrips: chosenCantrips, 
-        spells: chosenSpells, 
-        lastAccess: new Date().toISOString()
-    };
-
-    let list = JSON.parse(localStorage.getItem('dnd_character_list') || '[]');
-    const index = list.findIndex(c => c.id === lastBuiltCharacter.id);
-    if (index >= 0) {
-        list[index] = lastBuiltCharacter;
-    } else {
-        list.push(lastBuiltCharacter);
-    }
-
-    localStorage.setItem('dnd_character_list', JSON.stringify(list));
-    localStorage.setItem('dnd_active_character', JSON.stringify(lastBuiltCharacter));
-
-    renderCharacterToSheet(lastBuiltCharacter);
-}
-
-function renderCharacterToSheet(charData) {
-    if (!charData) return;
-    
-    document.getElementById('screen-out-name').innerHTML = `<i class="fa-solid ${getClassIcon(charData.class)}"></i> ${charData.name}`;
-    document.getElementById('screen-out-meta').innerText = `${charData.species} | ${charData.class} Stufe ${charData.level || 1} | ${charData.background}`;
-    document.getElementById('screen-out-hp').innerText = `HP: ${charData.hp}`;
-    document.getElementById('screen-out-ac').innerText = `RK: ${charData.ac}`;
-    document.getElementById('screen-out-init').innerText = `Initiative: ${charData.mods.DEX >= 0 ? '+' : ''}${charData.mods.DEX}`;
-    document.getElementById('screen-out-prof').innerText = `Übungsbonus: +2`;
-    document.getElementById('screen-out-speed').innerText = `Bewegungsrate: ${charData.speed || 30} ft`;
-
-    document.getElementById('screen-out-stats').innerHTML = Object.keys(charData.stats).map(s => `
-        <div class="stat-box" onclick="openModal('${s} Wert', '${attributeDescriptions[s]}')">
-            <div style="font-size:0.75rem; color:var(--text-muted);">${s}</div>
-            <div class="stat-val">${charData.stats[s]}</div>
-            <div class="stat-mod">${charData.mods[s] >= 0 ? '+' : ''}${charData.mods[s]}</div>
-        </div>`).join('');
-
-    const bgObj = backgrounds[charData.background] || {};
-    let bgCustomData = getSelectedBgEquipmentAndTools(charData.background);
-    let flattenedTools = flattenEquipment(bgCustomData.tools);
-    let flattenedEq = flattenEquipment(bgCustomData.equipment);
-    let toolsStr = flattenedTools.join(', ') || 'Keine';
-    let eqStr = flattenedEq.join(', ') || 'Keine';
-
-    document.getElementById('screen-out-features').innerHTML = `
-        <li><b>Fertigkeiten:</b> ${charData.skills.join(', ')}</li>
-        <li><b>Volksmerkmale:</b> Geladener Charakter</li>
-        <li><b>Talent:</b> ${bgObj.feat || ''}</li>
-        <li><b>Werkzeuge:</b> ${toolsStr}</li>
-        <li><b>Hintergrund-Ausrüstung:</b> ${eqStr}</li>
-    `;
-
-    renderEquipmentSectionInSheet(charData.class, bgCustomData);
-
-    document.getElementById('screen-out-spells').innerHTML = `
-        <div style="font-weight:bold; font-size:0.85rem; color:var(--text-muted);">Zaubertricks:</div>
-        <div>${(charData.cantrips || []).join(', ') || 'Keine'}</div>
-        <div style="margin-top:8px; font-weight:bold; font-size:0.85rem; color:var(--text-muted);">Vorbereitete Stufe 1 Zauber:</div>
-        <div>${(charData.spells || []).join(', ') || 'Keine'}</div>
-    `;
-}
-
-function initApp() {
-    populateSelect('main-race', Object.keys(speciesData));
-    
-    const classSel = document.getElementById('class-select');
-    classSel.innerHTML = '';
-    Object.keys(classData).forEach(clsName => {
-        classSel.innerHTML += `<option value="${clsName}">${clsName}</option>`;
-    });
-
-    populateSelect('bg-select', Object.keys(backgrounds));
-
-    const arraySelects = document.querySelectorAll('.array-select');
-    arraySelects.forEach((sel, idx) => {
-        sel.innerHTML = '<option value="">--</option>';
-        standardArray.forEach(val => sel.innerHTML += `<option value="${val}">${val}</option>`);
-        sel.selectedIndex = idx + 1;
-    });
-
-    onMainRaceChange();
-    onClassChange();
-    updateBgDynamicUI();
-}
-
-function populateSelect(id, items) {
-    const sel = document.getElementById(id);
-    if (!sel) return;
-    sel.innerHTML = '';
-    items.forEach(i => sel.innerHTML += `<option value="${i}">${i}</option>`);
-}
-
-function openModal(title, text, iconClass = null, subtitle = null) {
-    const titleElem = document.getElementById('modal-title');
-    const subContainer = document.getElementById('modal-subtitle-container');
-    const modalBody = document.getElementById('modal-body');
-    const ruleModal = document.getElementById('rule-modal');
-
-    if (!titleElem || !modalBody || !ruleModal) return;
-
-    titleElem.innerHTML = iconClass ? `<span class="modal-icon-box"><i class="fa-solid ${iconClass}"></i></span> ${title}` : title;
-    if (subContainer) {
-        subContainer.innerHTML = subtitle ? `<div class="modal-subtitle">${subtitle}</div>` : '';
-    }
-
-    modalBody.innerHTML = text;
-    ruleModal.style.display = 'flex';
-    document.body.classList.add('modal-open');
-}
-
-function closeModal() {
-    const ruleModal = document.getElementById('rule-modal');
-    if (ruleModal) ruleModal.style.display = 'none';
-    document.body.classList.remove('modal-open');
-}
-
-function showRaceModal() {
-    const mainRace = document.getElementById('main-race').value;
-    const subRace = document.getElementById('sub-race').value;
-    if (speciesData[mainRace]?.subraces?.[subRace]?.text) {
-        openModal(subRace, speciesData[mainRace].subraces[subRace].text, "fa-child");
-    } else {
-        openModal(subRace, "Keine Beschreibung verfügbar.", "fa-child");
-    }
-}
-
-async function showClassModal() {
-    const clsName = document.getElementById('class-select').value;
-    const clsInfo = classData[clsName];
-    
-    if (!clsInfo) {
-        return openModal(clsName, `Keine Klassendaten für ${clsName} verfügbar.`, getClassIcon(clsName));
-    }
-
-    // Erstelle Modal-Inhalt aus JSON-Daten
-    let modalContent = `<strong>Zusammenfassung:</strong> ${clsInfo.summary || 'Keine'}<br><br>`;
-    modalContent += `<strong>Trefferwürfel:</strong> ${clsInfo.hitDice || 'N/A'}<br>`;
-    modalContent += `<strong>Hauptattribut:</strong> ${clsInfo.primaryAbility || 'N/A'}<br>`;
-    modalContent += `<strong>Rettungswürfe:</strong> ${clsInfo.savingThrows?.join(', ') || 'N/A'}<br><br>`;
-    
-    if (clsInfo.proficiencies) {
-        modalContent += `<strong>Rüstungen:</strong> ${(clsInfo.proficiencies.armor || []).join(', ') || 'Keine'}<br>`;
-        modalContent += `<strong>Waffen:</strong> ${(clsInfo.proficiencies.weapons || []).join(', ') || 'Keine'}<br>`;
-    }
-    
-    if (clsInfo.features && clsInfo.features.length > 0) {
-        modalContent += `<br><strong>Merkmal (Stufe 1):</strong><br>`;
-        const lvl1Features = clsInfo.features.filter(f => f.level === 1);
-        modalContent += lvl1Features.map(f => `• <b>${f.name}</b>: ${f.description}`).join('<br>');
-    }
-
-    openModal(clsName, modalContent, getClassIcon(clsName));
-}
-
-function showBgModal() {
-    const b = document.getElementById('bg-select').value;
-    const bg = backgrounds[b];
-    if (!bg) return;
-    openModal(b, `<b>Mögliche Attribute:</b> ${(bg.attributes || []).map(a => attrNamesDE[a] || a).join(', ')}<br><b>Talent:</b> ${bg.feat || ''}<br><b>Fertigkeiten:</b> ${(bg.skills || []).join(', ')}<br><br>${bg.text || ''}`, "fa-book");
-}
-
-function showSkillModal(selectId) {
-    // TODO: Fertigungsbeschreibungen aus JSON laden (wenn vorhanden)
-    const skill = document.getElementById(selectId).value;
-    openModal(skill, "Keine Beschreibung verfügbar.", "fa-check");
-}
-
-function showSpellModalFromDropdown(selectElem) {
-    showSpellModalByName(selectElem.value);
-}
-
-function showSpellModalByName(spellName) {
-    if (!spellName) return;
-    
-    let clean = spellName.replace(/ \((Racial|Auto|.*)\)/, '').trim();
-    let spellObj = allSpells.cantrips[clean] || allSpells.level1[clean] || allSpells.cantrips[spellName] || allSpells.level1[spellName];
-
-    if (!spellObj) return openModal(clean, "Keine detaillierte Beschreibung verfügbar.", "fa-wand-magic-sparkles");
-
-    let school = spellObj.school || "Zaubertrick";
-    let html = `<strong>Schule:</strong> ${school}<br>`;
-    html += `<strong>Zeitaufwand:</strong> ${spellObj.castingTime || 'N/A'}<br>`;
-    html += `<strong>Reichweite:</strong> ${typeof spellObj.range === 'object' ? `${spellObj.range.qty} ${spellObj.range.unit}` : spellObj.range || 'N/A'}<br>`;
-    html += `<strong>Komponenten:</strong> `;
-    if (spellObj.components) {
-        let comps = [];
-        if (spellObj.components.V) comps.push('V');
-        if (spellObj.components.G) comps.push('G');
-        if (spellObj.components.M) comps.push('M');
-        html += comps.join(', ') || 'Keine';
-    }
-    html += `<br><strong>Wirkungsdauer:</strong> ${typeof spellObj.duration === 'object' ? `${spellObj.duration.qty} ${spellObj.duration.unit}` : spellObj.duration || 'N/A'}<br><br>`;
-    html += `<strong>Beschreibung:</strong><br>${spellObj.description || 'N/A'}`;
-
-    if (spellObj.higherLevel) {
-        html += `<br><br><em>${spellObj.higherLevel}</em>`;
-    }
-
-    openModal(clean, html, "fa-wand-magic-sparkles", school);
-}
-
-function showCalcModal(type) {
-    if (!lastBuiltCharacter) return;
-    const c = lastBuiltCharacter;
-    let text = "";
-    if (type === 'HP') text = `Basis (${c.class}): ${c.hp - c.mods.CON}<br>+ Konstitution (${c.mods.CON}): ${c.mods.CON}<br><b>Total: ${c.hp}</b>`;
-    else if (type === 'RK') text = `Basis: 10<br>+ Geschicklichkeit (${c.mods.DEX}): ${c.mods.DEX}<br><b>Total: ${c.ac}</b>`;
-    else if (type === 'Initiative') text = `Geschicklichkeits-Modifikator: ${c.mods.DEX}`;
-    else if (type === 'Übungsbonus') text = `Stufe 1–4 = +2`;
-    else if (type === 'Bewegungsrate') text = `${c.speed || 30} Fuß`;
-    openModal(type, text, "fa-calculator");
-}
-
-function getClassIcon(className) {
-    switch (className) {
-        case "Artifizier": return "fa-wrench";
-        case "Barbar": return "fa-hammer";
-        case "Barde": return "fa-guitar";
-        case "Kleriker": return "fa-cross";
-        case "Druide": return "fa-tree";
-        case "Kämpfer": return "fa-shield";
-        case "Mönch": return "fa-ring";
-        case "Paladin": return "fa-shield";
-        case "Waldläufer": return "fa-crosshairs";
-        case "Schurke": return "fa-dagger";
-        case "Zauberer": return "fa-fire";
-        case "Hexenmeister": return "fa-star-of-life";
-        case "Magier": return "fa-hat-wizard";
-        default: return "fa-user";
-    }
-}
-
-function updateClassIconDisplay() {
-    const c = document.getElementById('class-select').value;
-    const iconElem = document.getElementById('class-icon-indicator');
-    if (iconElem) iconElem.className = `fa-solid ${getClassIcon(c)}`;
-}
-
-function onMainRaceChange() {
-    const mainRace = document.getElementById('main-race').value;
-    const subContainer = document.getElementById('subrace-container');
-    const subSelect = document.getElementById('sub-race');
-
-    if (!subSelect) return;
-    subSelect.innerHTML = '';
-    Object.keys(speciesData[mainRace]?.subraces || {}).forEach(subKey => {
-        subSelect.innerHTML += `<option value="${subKey}">${subKey}</option>`;
-    });
-    if (subContainer) subContainer.style.display = 'block';
-    updateSubraceOptions();
-}
-
-function updateSubraceOptions() {
-    const mainRace = document.getElementById('main-race').value;
-    const raceData = speciesData[mainRace];
-    const specialContainer = document.getElementById('special-attr-container');
-    const specialSelect = document.getElementById('special-attr-select');
-
-    if (raceData && raceData["spezial-attribut"] && raceData["spezial-attribut"].spellcasting) {
-        if (specialSelect) {
-            specialSelect.innerHTML = '';
-            raceData["spezial-attribut"].spellcasting.forEach(opt => specialSelect.innerHTML += `<option value="${opt}">${opt}</option>`);
-        }
-        if (specialContainer) specialContainer.style.display = 'block';
-    } else {
-        if (specialContainer) specialContainer.style.display = 'none';
-    }
-    updateSpellsUI();
-}
-
-function onClassChange() {
-    const clsName = document.getElementById('class-select').value;
-    updateClassIconDisplay();
-
-    const s1 = document.getElementById('skill1');
-    const s2 = document.getElementById('skill2');
-    if (!s1 || !s2) return;
-
-    s1.innerHTML = ''; s2.innerHTML = '';
-
-    // Fertigkeiten aus Klassen-JSON holen (Falls vorhanden)
-    const clsInfo = classData[clsName];
-    let skillOptions = [];
-    
-    if (clsInfo?.proficiencies?.skills?.from) {
-        skillOptions = clsInfo.proficiencies.skills.from;
-    } else {
-        // Fallback-Fertigkeiten
-        skillOptions = ["Akrobatik", "Athletik", "Einblick", "Wahrnehmung"];
-    }
-
-    skillOptions.forEach(sk => {
-        s1.innerHTML += `<option value="${sk}">${sk}</option>`;
-        s2.innerHTML += `<option value="${sk}">${sk}</option>`;
-    });
-    s1.selectedIndex = 0;
-    s2.selectedIndex = skillOptions.length > 1 ? 1 : 0;
-
-    validateSkills();
-    updateSpellsUI();
-}
-
-function onBgChange() {
-    updateBgDynamicUI();
-    validateSkills();
-}
-
-function onBgAsiModeChange() { updateBgAsiUI(); }
-
-function updateBgDynamicUI() {
-    updateBgAsiUI();
-    updateBgToolAndEquipmentUI();
-}
-
-function updateBgAsiUI() {
-    const bgName = document.getElementById('bg-select').value;
-    const bgObj = backgrounds[bgName];
-    const slotsContainer = document.getElementById('bg-asi-slots');
-    const mode = document.getElementById('bg-asi-mode').value;
-    
-    if (!slotsContainer) return;
-    if (!bgObj || !bgObj.attributes) { slotsContainer.innerHTML = ''; return; }
-
-    slotsContainer.innerHTML = '';
-    let optionsHtml = bgObj.attributes.map(attr => `<option value="${attr}">${attrNamesDE[attr] || attr}</option>`).join('');
-
-    if (mode === "2_1") {
-        slotsContainer.innerHTML = `
-            <div><label style="font-size:0.75rem;">+2 Attribut</label><select id="bg-asi-2" onchange="validateBgAsi()">${optionsHtml}</select></div>
-            <div><label style="font-size:0.75rem;">+1 Attribut</label><select id="bg-asi-1a" onchange="validateBgAsi()">${optionsHtml}</select></div>
-            <div></div>`;
-        const sel1a = document.getElementById('bg-asi-1a');
-        if (sel1a && bgObj.attributes.length > 1) sel1a.selectedIndex = 1;
-    } else {
-        slotsContainer.innerHTML = `
-            <div><label style="font-size:0.75rem;">+1</label><select id="bg-asi-1a" onchange="validateBgAsi()">${optionsHtml}</select></div>
-            <div><label style="font-size:0.75rem;">+1</label><select id="bg-asi-1b" onchange="validateBgAsi()">${optionsHtml}</select></div>
-            <div><label style="font-size:0.75rem;">+1</label><select id="bg-asi-1c" onchange="validateBgAsi()">${optionsHtml}</select></div>`;
-        const sel1a = document.getElementById('bg-asi-1a'), sel1b = document.getElementById('bg-asi-1b'), sel1c = document.getElementById('bg-asi-1c');
-        if (sel1a && bgObj.attributes.length > 0) sel1a.selectedIndex = 0;
-        if (sel1b && bgObj.attributes.length > 1) sel1b.selectedIndex = 1;
-        if (sel1c && bgObj.attributes.length > 2) sel1c.selectedIndex = 2;
-    }
-    validateBgAsi();
-}
-
-function updateBgToolAndEquipmentUI() {
-    const bgName = document.getElementById('bg-select').value;
-    const bgObj = backgrounds[bgName];
-    const container = document.getElementById('bg-dynamic-options-container');
-    const toolWrapper = document.getElementById('bg-tool-choice-wrapper');
-    const toolSelect = document.getElementById('bg-tool-select');
-    const eqWrapper = document.getElementById('bg-eq-choice-wrapper');
-
-    if (!container) return;
-    if (!bgObj) { container.style.display = 'none'; return; }
-
-    let hasChoices = false;
-    
-    // Werkzeug-Wahl prüfen
-    if (bgObj.tools && bgObj.tools.choiceA && bgObj.tools.choiceA.options) {
-        if (toolSelect) {
-            toolSelect.innerHTML = '';
-            bgObj.tools.choiceA.options.forEach(opt => toolSelect.innerHTML += `<option value="${opt}">${opt}</option>`);
-        }
-        if (toolWrapper) toolWrapper.style.display = 'block';
-        hasChoices = true;
-    } else if (toolWrapper) {
-        toolWrapper.style.display = 'none';
-    }
-
-    // Ausrüstungswahl prüfen
-    if (bgObj.equipment && bgObj.equipment.choiceA && bgObj.equipment.choiceB) {
-        if (eqWrapper) eqWrapper.style.display = 'block';
-        hasChoices = true;
-    } else if (eqWrapper) {
-        eqWrapper.style.display = 'none';
-    }
-
-    container.style.display = hasChoices ? 'block' : 'none';
-}
-
-function validateBgAsi() {
-    const mode = document.getElementById('bg-asi-mode').value;
-    const errElem = document.getElementById('bg-asi-error');
-    if (!errElem) return true;
-
-    let isValid = true;
-    if (mode === "2_1") {
-        const sel2 = document.getElementById('bg-asi-2');
-        const sel1a = document.getElementById('bg-asi-1a');
-        if (sel2 && sel1a && sel2.value === sel1a.value) isValid = false;
-    } else {
-        const v1 = document.getElementById('bg-asi-1a')?.value;
-        const v2 = document.getElementById('bg-asi-1b')?.value;
-        const v3 = document.getElementById('bg-asi-1c')?.value;
-        if (v1 && v2 && v3 && (v1 === v2 || v1 === v3 || v2 === v3)) isValid = false;
-    }
-    errElem.style.display = isValid ? 'none' : 'block';
-    return isValid;
-}
-
-function getBgBonuses() {
-    const mode = document.getElementById('bg-asi-mode').value;
-    let bonuses = { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 };
-    if (!validateBgAsi()) return bonuses;
-
-    if (mode === "2_1") {
-        const val2 = document.getElementById('bg-asi-2')?.value;
-        const val1a = document.getElementById('bg-asi-1a')?.value;
-        if (val2 && bonuses[val2] !== undefined) bonuses[val2] += 2;
-        if (val1a && bonuses[val1a] !== undefined) bonuses[val1a] += 1;
-    } else {
-        const v1 = document.getElementById('bg-asi-1a')?.value;
-        const v2 = document.getElementById('bg-asi-1b')?.value;
-        const v3 = document.getElementById('bg-asi-1c')?.value;
-        if (v1 && bonuses[v1] !== undefined) bonuses[v1] += 1;
-        if (v2 && bonuses[v2] !== undefined) bonuses[v2] += 1;
-        if (v3 && bonuses[v3] !== undefined) bonuses[v3] += 1;
-    }
-    return bonuses;
-}
-
-function getSelectedBgEquipmentAndTools(bgName) {
-    const bgObj = backgrounds[bgName];
-    if (!bgObj) return { tools: [], equipment: [] };
-
-    let tools = bgObj.tools?.choiceA ? [document.getElementById('bg-tool-select')?.value] : (Array.isArray(bgObj.tools) ? bgObj.tools : [bgObj.tools]);
-    let eqMode = document.getElementById('bg-eq-select')?.value || 'A';
-    let equipment = eqMode === 'B' ? bgObj.equipment.choiceB : bgObj.equipment.choiceA;
-    return { tools: tools.filter(Boolean), equipment: Array.isArray(equipment) ? equipment : [equipment] };
-}
-
-function getMod(score) { return Math.floor((score - 10) / 2); }
-function onStatsChange() { validateArray(); updateSpellsUI(); }
-
-function validateArray() {
-    const vals = Array.from(document.querySelectorAll('.array-select')).map(s => parseInt(s.value)).filter(v => !isNaN(v));
-    const errElem = document.getElementById('array-error');
-    if (!errElem) return true;
-    const isValid = vals.length === 6 && new Set(vals).size === 6;
-    errElem.style.display = isValid ? 'none' : 'block';
-    return isValid;
-}
-
-function validateSkills() {
-    const sk1 = document.getElementById('skill1')?.value;
-    const sk2 = document.getElementById('skill2')?.value;
-    const bgElem = document.getElementById('bg-select');
-    const errElem = document.getElementById('skill-error');
-    if (!errElem || !bgElem) return true;
-
-    const bgSkills = backgrounds[bgElem.value]?.skills || [];
-    const isValid = (sk1 && sk2 && sk1 !== sk2) && !bgSkills.includes(sk1) && !bgSkills.includes(sk2);
-    errElem.style.display = isValid ? 'none' : 'block';
-    return isValid;
-}
-
-function updateSpellsUI() {
-    const clsName = document.getElementById('class-select')?.value;
-    const cantripGroup = document.getElementById('cantrips-group');
-    const lvl1Group = document.getElementById('level1-group');
-    const cantripLabel = document.getElementById('cantrip-label');
-    const prepLabel = document.getElementById('prep-spells-label');
-
-    if (!cantripGroup || !lvl1Group) return;
-
-    cantripGroup.innerHTML = ''; 
-    lvl1Group.innerHTML = '';
-
-    // Nicht-Zauberer-Klassen prüfen
-    const nonCasters = ["Kämpfer", "Barbar", "Schurke", "Mönch"];
-    if (nonCasters.includes(clsName)) {
-        if (cantripLabel) cantripLabel.innerText = "Zaubertricks: Keine für diese Klasse.";
-        if (prepLabel) prepLabel.innerText = "Stufe 1 Zauber: Keine für diese Klasse.";
-        return;
-    }
-
-    // Zauber aus Klassen-JSON holen (Falls vorhanden)
-    const clsInfo = classData[clsName];
-    
-    // Zaubertricks
-    let allowedCantrips = [];
-    let maxCantrips = 0;
-    
-    if (clsInfo?.spellcasting?.cantripsKnown) {
-        // Aus klassen.json
-        const cantripConfig = clsInfo.spellcasting.cantripsKnown.find(c => c.level === 1);
-        maxCantrips = cantripConfig?.count || 2;
-        // TODO: Vollständige Zauberliste aus JSON (falls vorhanden)
-        allowedCantrips = Object.keys(allSpells.cantrips);
-    } else if (clsInfo?.spellcasting?.ability) {
-        // Halb-Zauberer
-        maxCantrips = 2;
-        allowedCantrips = Object.keys(allSpells.cantrips);
-    } else {
-        // Kein Spellcasting
-        if (cantripLabel) cantripLabel.innerText = "Zaubertricks: Keine für diese Klasse.";
-        if (prepLabel) prepLabel.innerText = "Stufe 1 Zauber: Keine für diese Klasse.";
-        return;
-    }
-    
-    if (cantripLabel) cantripLabel.innerText = `Wähle ${maxCantrips} Zaubertricks:`;
-    for (let i = 0; i < maxCantrips; i++) {
-        let opts = allowedCantrips.map(c => `<option value="${c}">${c}</option>`).join('');
-        cantripGroup.innerHTML += `<div class="input-row"><select class="char-cantrip-select"><option value="">-- Wählen --</option>${opts}</select><button type="button" class="info-btn" onclick="showSpellModalFromDropdown(this.previousElementSibling)">✨</button></div>`;
-    }
-
-    // Stufe 1 Zauber
-    let allowedLvl1 = [];
-    let maxPrep = 2;
-    
-    if (clsInfo?.spellcasting?.spellsPrepared) {
-        // Vorbereitete Zauber (Zauberer, Kleriker, etc.)
-        allowedLvl1 = Object.keys(allSpells.level1);
-    } else if (clsInfo?.spellcasting?.spellsKnown) {
-        // Bekannte Zauber (Barde, Hexenmeister, etc.)
-        allowedLvl1 = Object.keys(allSpells.level1);
-    } else {
-        allowedLvl1 = Object.keys(allSpells.level1);
-    }
-    
-    if (prepLabel) prepLabel.innerText = `Wähle Stufe 1 Zauber (Limit: ${maxPrep}):`;
-
-    for (let i = 0; i < maxPrep; i++) {
-        let opts = allowedLvl1.map(s => `<option value="${s}">${s}</option>`).join('');
-        lvl1Group.innerHTML += `<div class="input-row"><select class="char-spell-select"><option value="">-- Wählen --</option>${opts}</select><button type="button" class="info-btn" onclick="showSpellModalFromDropdown(this.previousElementSibling)">I</button></div>`;
-    }
-}
-
-function flattenEquipment(item) {
-    let result = [];
-    if (!item) return result;
-
-    if (typeof item === 'string') {
-        let cleaned = item.trim();
-        if (cleaned && !cleaned.toLowerCase().startsWith('wähle') && !cleaned.startsWith('[object') && !cleaned.includes('{') && !cleaned.endsWith('GM') && !cleaned.endsWith('SM') && !cleaned.endsWith('KM')) {
-            cleaned.split(/,| und /).forEach(p => {
-                let sub = p.trim();
-                if (sub && sub.length > 2 && !sub.toLowerCase().startsWith('wähle')) result.push(sub);
+        function showCustomConfirm(title, text, subtext, onYes) {
+            const modal = document.getElementById('custom-confirm-modal');
+            document.getElementById('confirm-title').innerText = title;
+            document.getElementById('confirm-text').innerText = text;
+            document.getElementById('confirm-subtext').innerText = subtext;
+            modal.style.display = 'flex';
+
+            const yesBtn = document.getElementById('confirm-yes-btn');
+            const noBtn = document.getElementById('confirm-no-btn');
+
+            const newYes = yesBtn.cloneNode(true);
+            const newNo = noBtn.cloneNode(true);
+            yesBtn.parentNode.replaceChild(newYes, yesBtn);
+            noBtn.parentNode.replaceChild(newNo, noBtn);
+
+            newYes.addEventListener('click', () => {
+                modal.style.display = 'none';
+                onYes();
+            });
+
+            newNo.addEventListener('click', () => {
+                modal.style.display = 'none';
             });
         }
-    } else if (Array.isArray(item)) {
-        item.forEach(sub => result.push(...flattenEquipment(sub)));
-    } else if (typeof item === 'object') {
-        for (let key in item) {
-            result.push(...flattenEquipment(item[key]));
+
+        function handleArchiveClick(event, id, name) {
+            event.stopPropagation();
+            showCustomConfirm(
+                "Helden begraben?",
+                `"${name}" wirklich in den Heldenfriedhof überführen?`,
+                "",
+                () => {
+                    let characters = getStoredCharacters();
+                    const index = characters.findIndex(c => c.id === id);
+                    if (index >= 0) { 
+                        characters[index].archived = true; 
+                        saveStoredCharacters(characters); 
+                        openCharacterModal(); 
+                    }
+                }
+            );
         }
-    }
-    return result;
-}
 
-function accumulateItems(itemList) {
-    let map = {};
-    itemList.forEach(raw => {
-        let flattened = flattenEquipment(raw);
-        flattened.forEach(str => {
-            let qty = "1";
-            let name = str;
-
-            let numMatch = str.match(/^(\d+)\s*(?:x\s*)?(.*)$/);
-            if (numMatch) {
-                qty = numMatch[1];
-                name = numMatch[2].trim();
+        function openGraveyardModal() {
+            const container = document.getElementById('graveyard-list-container');
+            container.innerHTML = '';
+            const characters = getStoredCharacters().filter(c => c.archived);
+            if (characters.length === 0) {
+                container.innerHTML = `<div style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Der Friedhof ist leer.</div>`;
             } else {
-                let lower = str.toLowerCase();
-                if (lower.startsWith('ein ') || lower.startsWith('eine ') || lower.startsWith('einen ')) {
-                    qty = "1";
-                    name = str.replace(/^(ein|eine|einen)\s+/i, '').trim();
-                } else if (lower.startsWith('zwei ')) {
-                    qty = "2";
-                    name = str.replace(/^zwei\s+/i, '').trim();
-                } else if (lower.startsWith('drei ')) {
-                    qty = "3";
-                    name = str.replace(/^drei\s+/i, '').trim();
-                } else if (lower.startsWith('vier ')) {
-                    qty = "4";
-                    name = str.replace(/^vier\s+/i, '').trim();
-                } else if (lower.startsWith('fünf ')) {
-                    qty = "5";
-                    name = str.replace(/^fünf\s+/i, '').trim();
-                } else if (lower.startsWith('zehn ')) {
-                    qty = "10";
-                    name = str.replace(/^zehn\s+/i, '').trim();
-                }
+                characters.forEach((char) => {
+                    const item = document.createElement('div');
+                    item.style.cssText = "background: var(--btn-back-bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 10px; display: flex; justify-content: space-between; align-items: center;";
+                    item.innerHTML = `
+                        <div>
+                            <div style="font-weight: bold; color: var(--text);">${char.name || "Held"}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">${char.class || "-"}</div>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button onclick="handleRestoreClick(event, '${char.id}', '${char.name || "Held"}')" style="background:none; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; flex-shrink:0;"><i class="fa-solid fa-person-arrow-up-from-line" style="font-size: 1.4rem; color: var(--text-muted);"></i></button>
+                            <button onclick="handleDeletePermanentlyClick(event, '${char.id}', '${char.name || "Held"}')" style="background:none; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; flex-shrink:0;"><i class="fa-solid fa-trash-can" style="font-size: 1.4rem; color: #a94442;"></i></button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
             }
-
-            name = name.replace(/[.,;]$/, '').trim();
-            if (!name || name.length < 2) return;
-
-            let key = name.toLowerCase();
-            if (map[key]) {
-                let q1 = parseInt(map[key].qty);
-                let q2 = parseInt(qty);
-                if (!isNaN(q1) && !isNaN(q2)) {
-                    map[key].qty = (q1 + q2).toString();
+            document.getElementById('graveyard-modal').style.display = 'flex';
+        }
+        function closeGraveyardModal() { document.getElementById('graveyard-modal').style.display = 'none'; }
+        
+        function handleRestoreClick(event, id, name) {
+            event.stopPropagation();
+            showCustomConfirm(
+                "Helden wiederbeleben?",
+                `Möchtest du "${name}" wiederbeleben?`,
+                "Du weißt was wir von Nekromantie halten!",
+                () => {
+                    let characters = getStoredCharacters();
+                    const index = characters.findIndex(c => c.id === id);
+                    if (index >= 0) { 
+                        delete characters[index].archived; 
+                        saveStoredCharacters(characters); 
+                        openGraveyardModal(); 
+                    }
                 }
-            } else {
-                map[key] = { originalName: name, qty: qty };
+            );
+        }
+
+        function handleDeletePermanentlyClick(event, id, name) {
+            event.stopPropagation();
+            showCustomConfirm(
+                "Endgültig löschen?",
+                `Soll die Seele von "${name}" für alle Ewigkeit in der Leere verschwinden?`,
+                "",
+                () => {
+                    let characters = getStoredCharacters();
+                    characters = characters.filter(c => c.id !== id);
+                    saveStoredCharacters(characters);
+                    openGraveyardModal();
+                }
+            );
+        }
+
+        function resetLocalStorage() {
+            if (confirm("Möchtest du wirklich den gesamten lokalen Speicher leeren? Alle gespeicherten Helden und Einstellungen gehen verloren.")) {
+                localStorage.clear();
+                alert("Speicher erfolgreich geleert!");
+                location.reload();
             }
-        });
-    });
-    return Object.values(map);
-}
-
-function renderEquipmentSectionInSheet(clsName, bgCustomData) {
-    const container = document.getElementById('sheet-equipment-controls');
-    if (!container) return;
-
-    // Startausrüstung aus Klassen-JSON holen (Falls vorhanden)
-    let classItems = [];
-    const clsInfo = classData[clsName];
-    
-    if (clsInfo?.startingEquipment) {
-        // Aus JSON zusammenbauen
-        let startEq = clsInfo.startingEquipment;
-        let allChoiceItems = [];
-        
-        if (startEq.choiceA) allChoiceItems.push(startEq.choiceA);
-        if (startEq.choiceB) allChoiceItems.push(startEq.choiceB);
-        if (startEq.additionalItems) allChoiceItems.push(...startEq.additionalItems);
-        
-        classItems = allChoiceItems.flat().filter(i => i?.name);
-    } else {
-        // Hardcoded Fallback (bis JSON vollständig ist)
-        if (clsName === "Artifizier") classItems = [{name: "Dolch", qty: 1}, {name: "Schuppenpanzer", qty: 1}, {name: "Tüftlerwerkzeuge", qty: 1}, {name: "Materialkomponentenbeutel", qty: 1}];
-        else if (clsName === "Barbar") classItems = [{name: "Zweihandaxt", qty: 1}, {name: "Wurfspeer", qty: 4}, {name: "Entdeckerausrüstung", qty: 1}];
-        else if (clsName === "Barde") classItems = [{name: "Rapier", qty: 1}, {name: "Laute", qty: 1}, {name: "Diplomatenausrüstung", qty: 1}, {name: "Leder", qty: 1}];
-        else if (clsName === "Kleriker") classItems = [{name: "Streitkolben", qty: 1}, {name: "Kettenhemd", qty: 1}, {name: "Heiliges Symbol", qty: 1}, {name: "Entdeckerausrüstung", qty: 1}];
-        else if (clsName === "Kämpfer") classItems = [{name: "Langschwert", qty: 1}, {name: "Plattenpanzer", qty: 1}, {name: "Schild", qty: 1}, {name: "Gewölbeforscherausrüstung", qty: 1}];
-        else classItems = [{name: "Dolch", qty: 1}, {name: "Entdeckerausrüstung", qty: 1}];
-    }
-
-    // Alle Items zusammenführen (Klasse + Hintergrund)
-    let rawList = [classItems, bgCustomData.equipment, bgCustomData.tools];
-    let accumulated = accumulateItems(rawList);
-
-    let rowsHtml = accumulated.map(item => `
-        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--card); border: 1.5px solid var(--border); padding: 6px 10px; border-radius: 6px; margin-bottom: 6px;">
-            <span style="color: var(--text); font-weight: bold;">
-                <i class="fa-solid fa-box-open" style="color: var(--accent); margin-right: 6px;"></i>${item.originalName}
-            </span>
-            <span style="background: var(--btn-back-bg); border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; color: var(--text);">
-                Anzahl: ${item.qty}
-            </span>
-        </div>
-    `).join('');
-
-    container.innerHTML = `
-        <div style="font-size:0.85rem; margin-bottom: 8px; color: var(--text-muted);"><b>Ausrüstungsliste (kumuliert):</b></div>
-        <div style="display: flex; flex-direction: column;">${rowsHtml}</div>
-    `;
-}
-
-function manualSaveCharacter() {
-    buildCharacterAndSave();
-    showCustomAlert("Held erfolgreich gespeichert!");
-}
-
-function resetLocalStorage() {
-    if (confirm("Möchtest du wirklich den gesamten lokalen Speicher leeren? Alle gespeicherten Helden und Einstellungen gehen verloren.")) {
-        localStorage.clear();
-        showCustomAlert("Speicher erfolgreich geleert!");
-        location.reload();
-    }
-}
-</script>
+        }
+    </script>
 </body>
 </html>
