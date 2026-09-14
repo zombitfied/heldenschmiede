@@ -1,0 +1,587 @@
+{
+  "weapons": {
+    "Dolch": {
+      "name": "Dolch",
+      "damage": "1W4",
+      "damagetype": "Stich",
+      "properties": ["Finesse", "Light", "Thrown (range 20/60)"],
+      "mastery": "Nick",
+      "weight": "1 lb.",
+      "cost": "2 GP"
+    },
+    "Langschwert": {
+      "name": "Langschwert",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["TODO"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Zweihandaxt": {
+      "name": "Zweihandaxt",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["TODO"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Streitkolben": {
+      "name": "Streitkolben",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["TODO"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Speer": {
+      "name": "Speer",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Thrown", "Versatile"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Wurfspeer": {
+      "name": "Wurfspeer",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Thrown"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Rapier": {
+      "name": "Rapier",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Finesse"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Langbogen": {
+      "name": "Langbogen",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Ammunition", "Heavy", "Two-handed"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Kurzbogen": {
+      "name": "Kurzbogen",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Ammunition", "Light"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Leichte Armbrust": {
+      "name": "Leichte Armbrust",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Ammunition", "Loading", "Two-handed"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Handaxt": {
+      "name": "Handaxt",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Light", "Thrown"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Sichel": {
+      "name": "Sichel",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Light"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Kampfstab": {
+      "name": "Kampfstab",
+      "damage": "TODO",
+      "damagetype": "TODO",
+      "properties": ["Versatile"],
+      "mastery": "TODO",
+      "weight": "TODO",
+      "cost": "TODO"
+    }
+  },
+  "armor": {
+    "Leder": {
+      "armor": "Leder",
+      "type": "Leichte Rüstung",
+      "armor_class": "11 + DEX-Modifikator",
+      "strength": "-",
+      "stealth": "kein Nachteil",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Schuppenpanzer": {
+      "armor": "Schuppenpanzer",
+      "type": "Mittlere Rüstung",
+      "armor_class": "12 + max. 2 DEX-Modifikator",
+      "strength": "-",
+      "stealth": "Nachteil",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Kettenhemd": {
+      "armor": "Kettenhemd",
+      "type": "Mittlere Rüstung",
+      "armor_class": "14",
+      "strength": "-",
+      "stealth": "Nachteil",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Plattenpanzer": {
+      "armor": "Plattenpanzer",
+      "type": "Schwere Rüstung",
+      "armor_class": "18",
+      "strength": "TODO",
+      "stealth": "Nachteil",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Schild": {
+      "armor": "Schild",
+      "type": "Schild",
+      "armor_class": "+2 RK",
+      "strength": "-",
+      "stealth": "-",
+      "weight": "TODO",
+      "cost": "TODO"
+    }
+  },
+  "tools": {
+    "Tüftlerwerkzeuge": {
+      "name": "Tüftlerwerkzeuge",
+      "ability": "INT",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "25 GP",
+      "variant": null
+    },
+    "Kartografenwerkzeug": {
+      "name": "Kartografenwerkzeug",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Kalligrafenwerkzeug": {
+      "name": "Kalligrafenwerkzeug",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Diebeswerkzeug": {
+      "name": "Diebeswerkzeug",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "25 GP",
+      "variant": null
+    },
+    "Fälscherausrüstung": {
+      "name": "Fälscherausrüstung",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "15 GP",
+      "variant": null
+    },
+    "Navigationswerkzeug": {
+      "name": "Navigationswerkzeug",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "25 GP",
+      "variant": null
+    },
+    "Schreinerwerkzeug": {
+      "name": "Schreinerwerkzeug",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Kräuterkundeausrüstung": {
+      "name": "Kräuterkundeausrüstung",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "5 GP",
+      "variant": null
+    },
+    "Musikinstrument": {
+      "name": "Musikinstrument",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": [
+        "Dudelsack",
+        "Flöte",
+        "Gambe",
+        "Hackbrett",
+        "Horn",
+        "Laute",
+        "Leier",
+        "Panflöte",
+        "Schalmei",
+        "Trommel"
+      ]
+    },
+    "Alchemistenausrüstung": {
+      "name": "Alchemistenausrüstung",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "50 GP",
+      "variant": null
+    },
+    "Brauereizubehör": {
+      "name": "Brauereizubehör",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Glasbläserwerkzeuge": {
+      "name": "Glasbläserwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Holzschnitzwerkzeuge": {
+      "name": "Holzschnitzwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Juwelierwerkzeuge": {
+      "name": "Juwelierwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Kochutensilien": {
+      "name": "Kochutensilien",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Ledererwerkzeuge": {
+      "name": "Ledererwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Malereizubehör": {
+      "name": "Malereizubehör",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Maurerwerkzeuge": {
+      "name": "Maurerwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Schmiedewerkzeuge": {
+      "name": "Schmiedewerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Schusterwerkzeuge": {
+      "name": "Schusterwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Töpferwerkzeuge": {
+      "name": "Töpferwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Verkleidungsausrüstung": {
+      "name": "Verkleidungsausrüstung",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    },
+    "Weberwerkzeuge": {
+      "name": "Weberwerkzeuge",
+      "ability": "TODO",
+      "weight": "TODO",
+      "utilize": "TODO",
+      "craft": "TODO",
+      "cost": "TODO",
+      "variant": null
+    }
+  },
+  "items": {
+    "Buch": {
+      "item": "Buch",
+      "description": "Ein Buch zum Lesen oder Studium",
+      "weight": "TODO",
+      "cost": "25 GP"
+    },
+    "Pergament": {
+      "item": "Pergament",
+      "description": "Schreibmaterial aus Tierhaut",
+      "weight": "TODO",
+      "cost": "TODO"
+    },
+    "Schlafsack": {
+      "item": "Schlafsack",
+      "description": "Zum Schlafen im Freien",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Zelt": {
+      "item": "Zelt",
+      "description": "Unterkunft im Freien",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Reisekleidung": {
+      "item": "Reisekleidung",
+      "description": "Praktische Kleidung für Reisen",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Feine Kleidung": {
+      "item": "Feine Kleidung",
+      "description": "Qualitätsvolle Kleidung für adelige Umgebungen",
+      "weight": "TODO",
+      "cost": "20 GP"
+    },
+    "Kostüm": {
+      "item": "Kostüm",
+      "description": "Spezielle Kleidung für Auftritte",
+      "weight": "TODO",
+      "cost": "10 GP"
+    },
+    "Robe": {
+      "item": "Robe",
+      "description": "Langes Gewand für Gelehrte oder Zauberer",
+      "weight": "TODO",
+      "cost": "5 GP"
+    },
+    "Öl": {
+      "item": "Öl",
+      "description": "Brennstoff für Lampen",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Lampe": {
+      "item": "Lampe",
+      "description": "Beleuchtungskörper mit Öl",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Seil": {
+      "item": "Seil",
+      "description": "Hanfseil für Kletterarbeiten",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Köcher": {
+      "item": "Köcher",
+      "description": "Behältnis für Pfeile oder Bolzen",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Handschellen": {
+      "item": "Handschellen",
+      "description": "Metallgefessel zur Gefangennahme",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Beutel": {
+      "item": "Beutel",
+      "description": "Kleiner Tragetasche für Kleinigkeiten",
+      "weight": "TODO",
+      "cost": "0.1 GP"
+    },
+    "Brechstange": {
+      "item": "Brechstange",
+      "description": "Werkzeug zum Aufbrechen von Türen",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Eisentopf": {
+      "item": "Eisentopf",
+      "description": "Kochgeschirr aus Eisen",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Schaufel": {
+      "item": "Schaufel",
+      "description": "Werkzeug zum Graben",
+      "weight": "TODO",
+      "cost": "2 GP"
+    },
+    "Heilerausrüstung": {
+      "item": "Heilerausrüstung",
+      "description": "Werkzeuge für medizinische Behandlungen",
+      "weight": "TODO",
+      "cost": "5 GP"
+    },
+    "Materialkomponentenbeutel": {
+      "item": "Materialkomponentenbeutel",
+      "description": "Beutel mit magischen Komponenten für Zauber",
+      "weight": "TODO",
+      "cost": "25 GP"
+    },
+    "Heiliges Symbol": {
+      "item": "Heiliges Symbol",
+      "description": "Fokus für göttliche Zauber",
+      "weight": "TODO",
+      "cost": "5 GP"
+    },
+    "Laute": {
+      "item": "Laute",
+      "description": "Saiteninstrument für Barden",
+      "weight": "TODO",
+      "cost": "35 GP"
+    },
+    "Diplomatenausrüstung": {
+      "item": "Diplomatenausrüstung",
+      "description": "Set für offizielle Korrespondenz",
+      "weight": "TODO",
+      "cost": "30 GP"
+    },
+    "Entdeckerausrüstung": {
+      "item": "Entdeckerausrüstung",
+      "description": "Paket für Wanderungen und Erkundungen",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Gewölbeforscherausrüstung": {
+      "item": "Gewölbeforscherausrüstung",
+      "description": "Paket für Höhlen- und Tiefenexploration",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Spielset": {
+      "item": "Spielset",
+      "description": "Würfelspiel oder Kartenspiel",
+      "weight": "TODO",
+      "cost": "0.5 GP"
+    },
+    "Handelswaren": {
+      "item": "Handelswaren",
+      "description": "Allgemeine Handelsware im Wert von 5 GP",
+      "weight": "TODO",
+      "cost": "5 GP"
+    },
+    "GM": {
+      "item": "Goldstücke",
+      "description": "Währungseinheit",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Pfeile": {
+      "item": "Pfeile",
+      "description": "Munition für Bögen",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "Bolzen": {
+      "item": "Bolzen",
+      "description": "Munition für Armbrüste",
+      "weight": "TODO",
+      "cost": "1 GP"
+    },
+    "versteinertes Auge eines Molchs": {
+      "item": "Versteinertes Molchauge",
+      "description": "Magische Komponente für Verwünschen",
+      "weight": "TODO",
+      "cost": "TODO",
+      "spell": "Verwünschen"
+    },
+    "Diamantstaub": {
+      "item": "Diamantstaub",
+      "description": "Wertvolle magische Komponente",
+      "weight": "TODO",
+      "cost": "100 GP",
+      "consumed": true,
+      "spell": "Vollständige Genesung"
+    },
+    "blaue Glasscherbe": {
+      "item": "Blaue Glasscherbe",
+      "description": "Magische Komponente",
+      "weight": "TODO",
+      "cost": "TODO",
+      "consumed": false,
+      "spell": "Rüstung von Agathys"
+    }
+  }
+}
