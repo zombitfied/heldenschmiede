@@ -1,368 +1,3 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D 5e / 2024 Charakter erstellen</title>
-    
-    <script>
-        const savedTheme = localStorage.getItem('dnd_theme') || 'standard';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        html, body {
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        .book-wrapper {
-            display: flex;
-            width: 200vw;
-            transition: transform 0.4s ease-in-out;
-            pointer-events: none;
-        }
-        .book-page {
-            width: 100vw;
-            box-sizing: border-box;
-            padding: 16px;
-            padding-top: 16px;
-            padding-bottom: 105px;
-            display: flex;
-            justify-content: center;
-            pointer-events: auto;
-        }
-        .book-page .container {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        /* Permanenter Footer mit abgerundeter, rauer SVG-Kante oben */
-        .page-footer-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--card);
-            border-top: 2px solid var(--border);
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
-            padding: 10px 16px;
-            box-sizing: border-box;
-            gap: 12px;
-            filter: url(#rough-edge);
-        }
-        
-        .footer-tab-btn {
-            background: var(--btn-back-bg);
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-weight: bold;
-            color: var(--text);
-            cursor: pointer;
-            font-family: serif;
-            font-size: 0.95rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            max-width: 300px;
-            transition: all 0.2s;
-            filter: url(#rough-edge);
-        }
-        .footer-tab-btn i {
-            font-size: 1rem;
-            color: var(--accent);
-        }
-        .footer-tab-btn:hover {
-            background: var(--accent);
-            color: var(--bg);
-        }
-        .footer-tab-btn:hover i {
-            color: var(--bg);
-        }
-
-        .btn-debug-reset {
-            position: fixed;
-            top: 16px;
-            right: 68px;
-            z-index: 1100;
-            background: var(--btn-back-bg);
-            border: 1.5px solid #8b0000;
-            color: #8b0000;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: all 0.2s;
-        }
-        .btn-debug-reset:hover {
-            background: #8b0000;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-
-<svg style="display:none;" aria-hidden="true">
-    <filter id="rough-edge">
-        <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-</svg>
-
-<div class="page-footer-nav" id="footerNavContainer">
-    <button type="button" class="footer-tab-btn" onclick="requestSwitchToSheet()">
-        <i class="fa-solid fa-shield-halved"></i> Zum Heldenbogen
-    </button>
-</div>
-
-<button class="btn-debug-reset" onclick="resetLocalStorage()" title="Speicher komplett leeren (Reset)">
-    <i class="fa-solid fa-bug"></i>
-</button>
-
-<button class="btn-theme-toggle" onclick="openThemeModal()" title="Design wählen">
-    <i class="fa-solid fa-paintbrush"></i>
-</button>
-
-<div class="book-wrapper" id="bookWrapper">
-    <!-- SEITE 1: ERSTELLUNG -->
-    <div class="book-page">
-        <div class="container" style="max-width:100%;">
-            <div class="top-nav" style="justify-content: space-between;">
-                <a href="index.html" class="btn-back">
-                    <i class="fa-solid fa-arrow-left"></i> Zum Eingang
-                </a>
-            </div>
-
-            <div class="page-title">Held/in erstellen</div>
-
-            <div class="step-card">
-                <div class="step-title">Identität & Volk</div>
-                <div>
-                    <label for="char-name">Name</label>
-                    <input type="text" id="char-name" value="Gimble">
-                </div>
-                <div class="grid-race" style="margin-top: 8px;">
-                    <div>
-                        <label for="main-race">Volk</label>
-                        <div class="input-row">
-                            <select id="main-race" onchange="onMainRaceChange()"></select>
-                        </div>
-                    </div>
-                    <div id="subrace-container" style="display: none;">
-                        <label for="sub-race">Abstammung</label>
-                        <div class="input-row">
-                            <select id="sub-race" onchange="updateSubraceOptions()"></select>
-                            <button type="button" class="info-btn" onclick="showRaceModal()">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="special-attr-container" class="special-attribute-box">
-                    <label id="special-attr-label">Spezial-Attribut wählen:</label>
-                    <select id="special-attr-select"></select>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Klasse und Hintergrund</div>
-                <div class="grid-2">
-                    <div>
-                        <label for="class-select">Klasse</label>
-                        <div class="input-row">
-                            <select id="class-select" onchange="onClassChange()"></select>
-                            <button type="button" class="info-btn" id="class-info-btn" onclick="showClassModal()"><i class="fa-solid fa-wrench" id="class-icon-indicator"></i></button>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="bg-select">Hintergrund</label>
-                        <div class="input-row">
-                            <select id="bg-select" onchange="onBgChange()"></select>
-                            <button type="button" class="info-btn" onclick="showBgModal()">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 12px; background: var(--btn-back-bg); padding: 10px; border-radius: 8px; border: 1.5px solid var(--border);">
-                    <label for="bg-asi-mode" style="margin-top:0; color:var(--accent);">Hintergrund-Attributsbonus (+3 Punkte):</label>
-                    <select id="bg-asi-mode" onchange="onBgAsiModeChange()" style="margin-top:4px; margin-bottom:8px;">
-                        <option value="2_1">+2 auf ein Attribut, +1 auf ein anderes</option>
-                        <option value="1_1_1">+1 auf drei verschiedene Attribute</option>
-                    </select>
-                    <div id="bg-asi-slots" class="grid-3" style="gap:6px;"></div>
-                    <div id="bg-asi-error" class="error" style="display:none;">Wähle unterschiedliche Attribute ohne Dopplungen innerhalb der Boni!</div>
-                </div>
-
-                <div id="bg-dynamic-options-container" style="margin-top: 12px; display: none; background: var(--btn-back-bg); padding: 10px; border-radius: 8px; border: 1.5px solid var(--border);">
-                    <div id="bg-tool-choice-wrapper" style="margin-bottom: 8px; display: none;">
-                        <label id="bg-tool-label" style="margin-top:0; color:var(--accent);">Werkzeug-Wahl:</label>
-                        <select id="bg-tool-select" style="margin-top:4px;"></select>
-                    </div>
-                    <div id="bg-eq-choice-wrapper" style="display: none;">
-                        <label id="bg-eq-label" style="margin-top:0; color:var(--accent);">Startausrüstung (Paket wählen):</label>
-                        <select id="bg-eq-select" style="margin-top:4px;">
-                            <option value="A">Option A (Ausrüstungspaket + Gold)</option>
-                            <option value="B">Option B (50 Goldstücke)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Start-Attribute zuweisen</div>
-                <div class="grid-3">
-                    <div><label>Stärke</label><select class="array-select" id="str-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Geschicklichkeit</label><select class="array-select" id="dex-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Konstitution</label><select class="array-select" id="con-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Intelligenz</label><select class="array-select" id="int-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Weisheit</label><select class="array-select" id="wis-val" onchange="onStatsChange()"></select></div>
-                    <div><label>Charisma</label><select class="array-select" id="cha-val" onchange="onStatsChange()"></select></div>
-                </div>
-                <div id="array-error" class="error">Wähle 15, 14, 13, 12, 10, 8 ohne Dopplungen!</div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-title">Fertigkeiten wählen</div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div>
-                        <label for="skill1">Fertigkeit 1</label>
-                        <div class="input-row">
-                            <select id="skill1" onchange="validateSkills()"></select>
-                            <button type="button" class="info-btn" onclick="showSkillModal('skill1')">ℹ</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="skill2">Fertigkeit 2</label>
-                        <div class="input-row">
-                            <select id="skill2" onchange="validateSkills()"></select>
-                            <button type="button" class="info-btn" onclick="showSkillModal('skill2')">ℹ</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="skill-error" class="error">Wähle 2 verschiedene Fertigkeiten, die sich nicht mit deinem Hintergrund überschneiden!</div>
-            </div>
-
-            <div class="step-card" id="spells-step-card" style="margin-bottom: 20px;">
-                <div class="step-title">Klassen-Zauber wählen</div>
-                <label id="cantrip-label">Zaubertricks wählen</label>
-                <div class="spell-container" id="cantrips-group"></div>
-
-                <label id="prep-spells-label" style="margin-top:15px;">Stufe 1 Zauber wählen:</label>
-                <div class="spell-container" id="level1-group"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEITE 2: HELD / CHARAKTERBLATT -->
-    <div class="book-page">
-        <div class="container" style="max-width:100%;">
-            <div id="sheet" class="sheet" style="display: block; margin-top: 10px; margin-bottom: 20px;">
-                <h2 id="screen-out-name" style="margin-top:0; color:var(--accent);"></h2>
-                <div id="screen-out-meta" style="font-size:0.9rem; color:var(--text-muted); text-align:center; margin-bottom:10px;"></div>
-                
-                <div style="margin-bottom: 12px;">
-                    <span class="badge" id="screen-out-hp" onclick="showCalcModal('HP')"></span>
-                    <span class="badge" id="screen-out-ac" onclick="showCalcModal('RK')"></span>
-                    <span class="badge" id="screen-out-init" onclick="showCalcModal('Initiative')"></span>
-                    <span class="badge" id="screen-out-prof" onclick="showCalcModal('Übungsbonus')">Übungsbonus: +2</span>
-                    <span class="badge" id="screen-out-speed" onclick="showCalcModal('Bewegungsrate')"></span>
-                </div>
-
-                <h3 style="color:var(--accent);">Attributswerte & Modifikatoren</h3>
-                <div class="grid-3" id="screen-out-stats" style="margin-bottom:15px;"></div>
-
-                <h3 style="color:var(--accent);">Fertigkeiten & Merkmale</h3>
-                <ul id="screen-out-features" style="margin-bottom:15px;"></ul>
-
-                <h3 style="color:var(--accent);">Ausrüstung & Waffen-Konfiguration</h3>
-                <div id="sheet-equipment-controls" style="background:var(--btn-back-bg); padding:12px; border-radius:6px; border:1.5px solid var(--border); margin-bottom:15px;"></div>
-
-                <h3 style="color:var(--accent);">Zauber & Zaubertricks Übersicht</h3>
-                <div id="screen-out-spells" style="margin-bottom:20px;"></div>
-
-                <div style="display: flex; gap: 10px; margin-top: 15px;">
-                    <button class="btn-gray-main" onclick="manualSaveCharacter()" style="margin-top:0; width: 100%;">
-                        <i class="fa-solid fa-floppy-disk"></i> Held speichern
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL: Änderungen übernehmen Abfrage -->
-<div id="change-confirm-modal" class="modal-overlay" style="display:none; z-index: 9999;">
-    <div class="modal-content" style="text-align: center; max-width: 340px;">
-        <div class="modal-title" style="justify-content: center;">
-            <span>Änderungen übernehmen?</span>
-        </div>
-        <div class="modal-body" style="font-size: 0.9rem; color: var(--text); margin: 15px 0;">
-            <span>Möchtest du die aktuellen Änderungen aus dem Formular für deinen Helden übernehmen?</span>
-        </div>
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-            <button onclick="confirmPageSwitch(true)" class="main-btn" style="flex: 1; background: var(--accent); color: var(--bg); border: 1.5px solid var(--accent); margin-bottom: 0; font-weight:bold;">Ja</button>
-            <button onclick="confirmPageSwitch(false)" class="main-btn" style="flex: 1; background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0;">Nein</button>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL: Einheitlicher Hinweis-Dialog (Custom Alert) -->
-<div id="custom-alert-modal" class="modal-overlay" style="display:none; z-index: 10000;">
-    <div class="modal-content" style="text-align: center; max-width: 320px;">
-        <div class="modal-title" style="justify-content: center;">
-            <span id="custom-alert-title">Hinweis</span>
-        </div>
-        <div class="modal-body" id="custom-alert-text" style="font-size: 0.9rem; color: var(--text); margin: 15px 0; font-weight: bold;">
-            Nachricht...
-        </div>
-        <button onclick="closeCustomAlert()" class="main-btn" style="background: var(--btn-back-bg); color: var(--text); border: 1.5px solid var(--border); margin-bottom: 0; width: 100%;">OK</button>
-    </div>
-</div>
-
-<div id="theme-modal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-title">
-            <span>Design wählen</span>
-        </div>
-        
-        <div class="modal-body" style="overflow: visible;">
-            <button class="theme-option-btn" onclick="setTheme('standard')">
-                <span><i class="fa-solid fa-scroll" style="color: var(--accent); margin-right: 8px;"></i> Standard (Pergament)</span>
-                <i class="fa-solid fa-check" id="check-standard" style="display:none; color: var(--accent);"></i>
-            </button>
-            <button class="theme-option-btn" onclick="setTheme('dungeon')">
-                <span><i class="fa-solid fa-moon" style="color: var(--accent); margin-right: 8px;"></i> Dungeon (Dark Mode)</span>
-                <i class="fa-solid fa-check" id="check-dungeon" style="display:none; color: var(--accent);"></i>
-            </button>
-        </div>
-
-        <button class="btn-gray-main" onclick="closeThemeModal()" style="margin-top: 10px;">Schließen</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="rule-modal" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <div class="modal-title" id="modal-title">Regeldetails</div>
-        <div id="modal-subtitle-container"></div>
-        <div class="modal-body" id="modal-body">Beschreibungstext...</div>
-    </div>
-</div>
-
 <script>
 let currentPage = 'create';
 let lastBuiltCharacter = null;
@@ -434,7 +69,7 @@ function setTheme(themeName) {
 }
 
 // =========================================
-// NEUE JSON-URLS (ANPASST!)
+// JSON-URLS (ANPASST!)
 // =========================================
 const RACES_JSON_URL = "./rassen.json";
 const BACKGROUNDS_JSON_URL = "./hintergruende.json";
@@ -468,34 +103,37 @@ let allSpells = { cantrips: {}, level1: {} };
 window.onload = async function() {
     try {
         // RASSEN LADEN (rassen.json)
-        const racesResponse = await fetch(RACES_JSON_URL + "?t=" + Date.now());
-        if (!racesResponse.ok) throw new Error(`HTTP Fehler: rassen.json (${racesResponse.status})`);
-        const racesData = await racesResponse.json();
+        const racesResponse = await fetch(RACES_JSON_URL + "?nocache=" + Date.now());
+        if (!racesResponse.ok) throw new Error(`HTTP Fehler: ${racesResponse.status}`);
+        const racesText = await racesResponse.text();
+        const racesData = JSON.parse(racesText);
         speciesData = racesData.races || {};
 
         // HINTERGRÜNDE LADEN (hintergruende.json)
-        const bgResponse = await fetch(BACKGROUNDS_JSON_URL + "?t=" + Date.now());
+        const bgResponse = await fetch(BACKGROUNDS_JSON_URL + "?nocache=" + Date.now());
         if (bgResponse.ok) {
-            const bgData = await bgResponse.json();
+            const bgText = await bgResponse.text();
+            const bgData = JSON.parse(bgText);
             backgrounds = bgData.backgrounds || bgData;
         } else {
             throw new Error(`HTTP Fehler: hintergruende.json (${bgResponse.status})`);
         }
 
-        // KLASSEN LADEN (klassen.json) - Enthält Klasseninfos + Spellcasting!
-        const classesResponse = await fetch(CLASSES_JSON_URL + "?t=" + Date.now());
+        // KLASSEN LADEN (klassen.json)
+        const classesResponse = await fetch(CLASSES_JSON_URL + "?nocache=" + Date.now());
         if (classesResponse.ok) {
-            const classesRaw = await classesResponse.json();
+            const classesText = await classesResponse.text();
+            const classesRaw = JSON.parse(classesText);
             classData = classesRaw.classes || classesRaw;
         } else {
             throw new Error(`HTTP Fehler: klassen.json (${classesResponse.status})`);
         }
 
         // ZAUBER LADEN (zauber.json)
-        const spellsResponse = await fetch(SPELLS_JSON_URL + "?t=" + Date.now());
+        const spellsResponse = await fetch(SPELLS_JSON_URL + "?nocache=" + Date.now());
         if (spellsResponse.ok) {
-            const spellsRaw = await spellsResponse.json();
-            // Zauber nach Level kategorisieren
+            const spellsText = await spellsResponse.text();
+            const spellsRaw = JSON.parse(spellsText);
             const spellsObj = spellsRaw.spells || {};
             for (let spellName in spellsObj) {
                 const spell = spellsObj[spellName];
@@ -600,10 +238,17 @@ function buildCharacterAndSave() {
 
     const name = document.getElementById('char-name').value || "Unbenannter Held";
     const mainRace = document.getElementById('main-race').value || Object.keys(speciesData)[0];
-    const subRace = document.getElementById('sub-race').value || Object.keys(speciesData[mainRace]?.subraces || {})[0];
+    
+    // FIX: subtypes.options statt subraces
+    const raceData = speciesData[mainRace];
+    const subRace = document.getElementById('sub-race').value || (raceData?.subtypes?.options?.[0]?.name);
+    
     const clsName = document.getElementById('class-select').value || "Kämpfer";
     const bg = document.getElementById('bg-select').value || Object.keys(backgrounds)[0];
-    const subInfo = speciesData[mainRace]?.subraces[subRace] || { bonus: {}, speed: 30 };
+    
+    // Geschwindigkeit aus Subtype oder Default
+    const selectedSubtype = raceData?.subtypes?.options?.find(o => o.name === subRace);
+    const subInfo = selectedSubtype || { bonus: {}, speed: 30 };
 
     let rawStats = {
         STR: parseInt(document.getElementById('str-val')?.value) || 15,
@@ -626,7 +271,7 @@ function buildCharacterAndSave() {
     let mods = {};
     for (let s in stats) mods[s] = getMod(stats[s]);
 
-    // HP aus Klassen-JSON (TODO: Falls nicht verfügbar, Fallback-Werte)
+    // HP aus Klassen-JSON
     const clsInfo = classData[clsName];
     const hpBase = clsInfo?.hpAt1stLevel ? parseInt(clsInfo.hpAt1stLevel) || 8 : 8;
     const hp = hpBase + mods.CON;
@@ -773,8 +418,11 @@ function closeModal() {
 function showRaceModal() {
     const mainRace = document.getElementById('main-race').value;
     const subRace = document.getElementById('sub-race').value;
-    if (speciesData[mainRace]?.subraces?.[subRace]?.text) {
-        openModal(subRace, speciesData[mainRace].subraces[subRace].text, "fa-child");
+    const raceData = speciesData[mainRace];
+    const selectedSubtype = raceData?.subtypes?.options?.find(o => o.name === subRace);
+    
+    if (selectedSubtype?.description) {
+        openModal(subRace, selectedSubtype.description, "fa-child");
     } else {
         openModal(subRace, "Keine Beschreibung verfügbar.", "fa-child");
     }
@@ -788,7 +436,6 @@ async function showClassModal() {
         return openModal(clsName, `Keine Klassendaten für ${clsName} verfügbar.`, getClassIcon(clsName));
     }
 
-    // Erstelle Modal-Inhalt aus JSON-Daten
     let modalContent = `<strong>Zusammenfassung:</strong> ${clsInfo.summary || 'Keine'}<br><br>`;
     modalContent += `<strong>Trefferwürfel:</strong> ${clsInfo.hitDice || 'N/A'}<br>`;
     modalContent += `<strong>Hauptattribut:</strong> ${clsInfo.primaryAbility || 'N/A'}<br>`;
@@ -816,7 +463,6 @@ function showBgModal() {
 }
 
 function showSkillModal(selectId) {
-    // TODO: Fertigungsbeschreibungen aus JSON laden (wenn vorhanden)
     const skill = document.getElementById(selectId).value;
     openModal(skill, "Keine Beschreibung verfügbar.", "fa-check");
 }
@@ -892,6 +538,9 @@ function updateClassIconDisplay() {
     if (iconElem) iconElem.className = `fa-solid ${getClassIcon(c)}`;
 }
 
+// =========================================
+// KORREKTUR: subtypes statt subraces
+// =========================================
 function onMainRaceChange() {
     const mainRace = document.getElementById('main-race').value;
     const subContainer = document.getElementById('subrace-container');
@@ -899,28 +548,49 @@ function onMainRaceChange() {
 
     if (!subSelect) return;
     subSelect.innerHTML = '';
-    Object.keys(speciesData[mainRace]?.subraces || {}).forEach(subKey => {
-        subSelect.innerHTML += `<option value="${subKey}">${subKey}</option>`;
-    });
-    if (subContainer) subContainer.style.display = 'block';
+    
+    const raceData = speciesData[mainRace];
+    
+    // FIX: subtypes.options ist ein ARRAY, kein Objekt
+    if (raceData && raceData.subtypes && raceData.subtypes.options) {
+        raceData.subtypes.options.forEach(option => {
+            subSelect.innerHTML += `<option value="${option.name}">${option.name}</option>`;
+        });
+        if (subContainer) subContainer.style.display = 'block';
+    } else {
+        if (subContainer) subContainer.style.display = 'none';
+    }
+    
     updateSubraceOptions();
 }
 
 function updateSubraceOptions() {
     const mainRace = document.getElementById('main-race').value;
+    const subRace = document.getElementById('sub-race')?.value;
     const raceData = speciesData[mainRace];
     const specialContainer = document.getElementById('special-attr-container');
     const specialSelect = document.getElementById('special-attr-select');
 
-    if (raceData && raceData["spezial-attribut"] && raceData["spezial-attribut"].spellcasting) {
+    if (!raceData) {
+        if (specialContainer) specialContainer.style.display = 'none';
+        return;
+    }
+
+    // Finde die ausgewählte Subtype aus dem OPTIONS-ARRAY
+    const selectedSubtype = raceData.subtypes?.options?.find(o => o.name === subRace);
+    
+    if (selectedSubtype && selectedSubtype.specialAttribute) {
         if (specialSelect) {
             specialSelect.innerHTML = '';
-            raceData["spezial-attribut"].spellcasting.forEach(opt => specialSelect.innerHTML += `<option value="${opt}">${opt}</option>`);
+            selectedSubtype.specialAttribute.forEach(opt => 
+                specialSelect.innerHTML += `<option value="${opt}">${opt}</option>`
+            );
         }
         if (specialContainer) specialContainer.style.display = 'block';
     } else {
         if (specialContainer) specialContainer.style.display = 'none';
     }
+    
     updateSpellsUI();
 }
 
@@ -934,7 +604,7 @@ function onClassChange() {
 
     s1.innerHTML = ''; s2.innerHTML = '';
 
-    // Fertigkeiten aus Klassen-JSON holen (Falls vorhanden)
+    // Fertigkeiten aus Klassen-JSON holen
     const clsInfo = classData[clsName];
     let skillOptions = [];
     
@@ -1132,7 +802,7 @@ function updateSpellsUI() {
         return;
     }
 
-    // Zauber aus Klassen-JSON holen (Falls vorhanden)
+    // Zauber aus Klassen-JSON holen
     const clsInfo = classData[clsName];
     
     // Zaubertricks
@@ -1140,17 +810,13 @@ function updateSpellsUI() {
     let maxCantrips = 0;
     
     if (clsInfo?.spellcasting?.cantripsKnown) {
-        // Aus klassen.json
         const cantripConfig = clsInfo.spellcasting.cantripsKnown.find(c => c.level === 1);
         maxCantrips = cantripConfig?.count || 2;
-        // TODO: Vollständige Zauberliste aus JSON (falls vorhanden)
         allowedCantrips = Object.keys(allSpells.cantrips);
     } else if (clsInfo?.spellcasting?.ability) {
-        // Halb-Zauberer
         maxCantrips = 2;
         allowedCantrips = Object.keys(allSpells.cantrips);
     } else {
-        // Kein Spellcasting
         if (cantripLabel) cantripLabel.innerText = "Zaubertricks: Keine für diese Klasse.";
         if (prepLabel) prepLabel.innerText = "Stufe 1 Zauber: Keine für diese Klasse.";
         return;
@@ -1167,10 +833,8 @@ function updateSpellsUI() {
     let maxPrep = 2;
     
     if (clsInfo?.spellcasting?.spellsPrepared) {
-        // Vorbereitete Zauber (Zauberer, Kleriker, etc.)
         allowedLvl1 = Object.keys(allSpells.level1);
     } else if (clsInfo?.spellcasting?.spellsKnown) {
-        // Bekannte Zauber (Barde, Hexenmeister, etc.)
         allowedLvl1 = Object.keys(allSpells.level1);
     } else {
         allowedLvl1 = Object.keys(allSpells.level1);
@@ -1263,12 +927,11 @@ function renderEquipmentSectionInSheet(clsName, bgCustomData) {
     const container = document.getElementById('sheet-equipment-controls');
     if (!container) return;
 
-    // Startausrüstung aus Klassen-JSON holen (Falls vorhanden)
+    // Startausrüstung aus Klassen-JSON holen
     let classItems = [];
     const clsInfo = classData[clsName];
     
     if (clsInfo?.startingEquipment) {
-        // Aus JSON zusammenbauen
         let startEq = clsInfo.startingEquipment;
         let allChoiceItems = [];
         
@@ -1278,7 +941,7 @@ function renderEquipmentSectionInSheet(clsName, bgCustomData) {
         
         classItems = allChoiceItems.flat().filter(i => i?.name);
     } else {
-        // Hardcoded Fallback (bis JSON vollständig ist)
+        // Fallback (bis JSON vollständig ist)
         if (clsName === "Artifizier") classItems = [{name: "Dolch", qty: 1}, {name: "Schuppenpanzer", qty: 1}, {name: "Tüftlerwerkzeuge", qty: 1}, {name: "Materialkomponentenbeutel", qty: 1}];
         else if (clsName === "Barbar") classItems = [{name: "Zweihandaxt", qty: 1}, {name: "Wurfspeer", qty: 4}, {name: "Entdeckerausrüstung", qty: 1}];
         else if (clsName === "Barde") classItems = [{name: "Rapier", qty: 1}, {name: "Laute", qty: 1}, {name: "Diplomatenausrüstung", qty: 1}, {name: "Leder", qty: 1}];
@@ -1321,5 +984,3 @@ function resetLocalStorage() {
     }
 }
 </script>
-</body>
-</html>
