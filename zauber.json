@@ -1,0 +1,130 @@
+{
+  "spells": {
+    "Verwünschen": {
+      "school": "Verzauberungszauber",
+      "level": 3,
+      "classes": ["Hexenmeister"],
+      "castingTime": "Bonusaktion",
+      "range": {
+        "qty": 27,
+        "unit": "Meter"
+      },
+      "components": {
+        "V": true,
+        "G": true,
+        "M": {
+          "item": "versteinertes Auge eines Molchs",
+          "consumed": false
+        }
+      },
+      "duration": {
+        "concentration": true,
+        "max": {
+          "qty": 8,
+          "unit": "Stunden"
+        }
+      },
+      "description": "Du verfluchst eine Kreatur in Reichweite, die du sehen kannst. Für die Wirkungsdauer fügst du dem Ziel, wenn du es mit einem Angriffswurf triffst, zusätzlichen Schaden zu. Wähle außerdem ein Attribut aus; das Ziel ist bei allen entsprechenden Attributswürfen im Nachteil.",
+      "higherLevel": "Verwenden von Zauberplätzen höheren Grades: Diese Konzentration kann länger andauern; bei einem Zauberplatz des 2. Grades bis zu vier Stunden, bei einem Zauberplatz des 3. und 4. Grades bis zu acht Stunden und bei einem Zauberplatz ab dem 5. Grad bis zu 24 Stunden."
+    },
+    "Vollständige Genesung": {
+      "school": "Bannzauber",
+      "level": 5,
+      "classes": ["Barde", "Druiden", "Kleriker", "Paladin", "Weißdürfen"],
+      "castingTime": "Aktion",
+      "range": "Berührung",
+      "components": {
+        "V": true,
+        "G": true,
+        "M": {
+          "item": "Diamantstaub",
+          "value": 100,
+          "unit": "GM",
+          "consumed": true
+        }
+      },
+      "duration": "Unmittelbar",
+      "description": "Du berührst eine Kreatur und hebst auf magische Art einer der folgenden Effekte bei ihr auf: 1 Erschöpfungsstufe. Einen der Zustände Betäubt oder Versteinerung. Einen Fluch oder die Stimmung des Ziels auf einen verfluchten magischen Gegenstand. Jegliche Verringerung eines der Attributwerte des Ziels. Jegliche Verringerung des Trefferpunktmaximums des Ziels."
+    },
+    "Magierhand": {
+      "school": "Zaubertrick",
+      "subSchool": "Beschwörung",
+      "level": 0,
+      "classes": ["Barde", "Hexenmeister", "Magier", "Zauberer"],
+      "castingTime": "Aktion",
+      "range": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "components": {
+        "V": true,
+        "G": true,
+        "M": null
+      },
+      "duration": {
+        "qty": 1,
+        "unit": "Minute"
+      },
+      "description": "An einem Punkt deiner Wahl in Reichweite erscheint eine geisterhafte schwebende Hand. Sie bleibt für die Dauer dort. Die Hand verschwindet, wenn sie weiter als neun Meter von dir entfernt ist oder du den Zauber erneut wirkst. Wenn du den Zauber wirkst, kannst du mithilfe der Hand mit Gegenständen interagieren, unverschlüsselte Türen oder Behälter öffnen, Gegenstände in einen Behälter verstauen oder daraus hervorholen oder den Inhalt einer Phiole ausgießen. An drei folgenden Zügen kannst du die Hand als magische Aktion erneut auf diese Art kontrollieren. Als Teil dieser Aktion kannst du die Hand bis zu neun Meter weit bewegen. Die Hand kann nicht angreifen, keine magischen Gegenstände aktivieren und nicht mehr als fünf Kilogramm Gewicht tragen."
+    },
+    "Rüstung von Agathys": {
+      "school": "Bannzauber",
+      "level": 1,
+      "classes": ["Hexenmeister"],
+      "castingTime": "Bonusaktion",
+      "range": "Selbst",
+      "components": {
+        "V": true,
+        "G": true,
+        "M": {
+          "item": "blaue Glasscherbe",
+          "consumed": false
+        }
+      },
+      "duration": {
+        "qty": 1,
+        "unit": "Stunde"
+      },
+      "description": "Du wirst von schützendem magischem Frost umgeben. Du erhältst 5 temporäre Trefferpunkte. Wenn du eine Kreatur während der Wirkungsdauer mit einem Nahkampfangriff triffst, erleidet sie 5 Kälteschaden. Wenn du keine temporären Trefferpunkte mehr hast, endet der Zauber vorzeitig.",
+      "higherLevel": "Verwenden von Zauberplätzen höheren Grades: Für jeden Zauberplatzgrad über dem 1. werden die temporären Trefferpunkte und der Kälteschaden jeweils um 5 erhöht."
+    },
+    "Säurespritzer": {
+      "school": "Zaubertrick",
+      "subSchool": "Hervorrufung",
+      "level": 0,
+      "classes": ["Magier", "Zauberer"],
+      "castingTime": "Aktion",
+      "range": {
+        "qty": 18,
+        "unit": "Meter"
+      },
+      "components": {
+        "V": true,
+        "G": true,
+        "M": null
+      },
+      "duration": "Unmittelbar",
+      "description": "Du erzeugst an einem Punkt in Reichweite eine Säureblase, die in einer Kugel mit einem Radius von 1,5 Metern explodiert. Jede Kreatur in der Kugel muss eine Geschicklichkeitsrettung bestehen, oder erleidet 1W6 Säureschaden.",
+      "higherLevel": "Zaubertrick-Aufwertung: Der Schaden wird um jeweils 1W6 erhöht, wenn du die 5. (2W6), die 11. (3W6) und die 17. (4W6) Stufe erreichst."
+    },
+    "Schauriger Strahl": {
+      "school": "Zaubertrick",
+      "subSchool": "Hervorrufung",
+      "level": 0,
+      "classes": ["Hexenmeister"],
+      "castingTime": "Aktion",
+      "range": {
+        "qty": 36,
+        "unit": "Meter"
+      },
+      "components": {
+        "V": true,
+        "G": true,
+        "M": null
+      },
+      "duration": "Unmittelbar",
+      "description": "Du schleuderst einen Strahl aus knisternder Energie. Führe einen Fernkampfangriff gegen eine Kreatur oder einen Gegenstand in Reichweite aus. Bei einem Treffer erleidet das Ziel 1W10 Energieschaden.",
+      "higherLevel": "Zaubertrick-Aufwertung: Der Zauber erzeugt mehr Strahlen, wenn du die 5. (zwei Strahlen), die 11. (drei Strahlen) und die 17. (vier Strahlen) Stufe erreichst. Du kannst die Strahlen alle auf dasselbe Ziel oder auf jeweils unterschiedliche Ziele zielen. Führe für jeden Strahl einen eigenen Angriffswurf aus."
+    }
+  }
+}
