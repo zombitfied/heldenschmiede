@@ -1,0 +1,887 @@
+{
+  "classes": {
+    "Barbarian": {
+      "summary": "A fierce warrior of primitive background who can enter a battle rage.",
+      "hitDice": "d12",
+      "hpAt1stLevel": "12 + Constitution modifier",
+      "hpPerLevel": "7 + Constitution modifier",
+      "primaryAbility": "Strength",
+      "savingThrows": ["Strength", "Constitution"],
+      "proficiencies": {
+        "armor": ["Light armor", "Medium armor", "Shields"],
+        "weapons": ["Simple weapons", "Martial weapons"],
+        "tools": [],
+        "skills": {
+          "from": ["Animal Handling", "Athletics", "Nature", "Perception", "Stealth", "Survival"],
+          "choose": 2
+        }
+      },
+      "startingEquipment": {
+        "choiceA": [
+          {"name": "Greataxe", "qty": 1}
+        ],
+        "choiceB": [
+          {"name": "Handaxe", "qty": 2}
+        ],
+        "additionalItems": [
+          {"name": "Explorer's pack", "qty": 1},
+          {"name": "Javelin", "qty": 4}
+        ]
+      },
+      "multiClassing": {
+        "prerequisites": {"STR": 13},
+        "proficienciesGranted": ["Light armor", "Medium armor", "Shields", "Simple weapons", "Martial weapons"]
+      },
+      "features": [
+        {
+          "level": 1,
+          "name": "Rage",
+          "description": "In a rage, you gain advantage on Strength checks and Strength saving throws, deal extra damage with melee weapons, and have resistance to bludgeoning, piercing, and slashing damage. Number of rages per day equals your proficiency bonus + 1, regaining all after a long rest."
+        },
+        {
+          "level": 1,
+          "name": "Unarmored Defense",
+          "description": "While wearing no armor, your AC equals 10 + Dexterity modifier + Constitution modifier. You can use a shield but still gain no benefit from wearing armor."
+        },
+        {
+          "level": 2,
+          "name": "Reckless Attack",
+          "description": "On your turn, you can throw caution to the wind. The first attack you make with a melee weapon on this turn is made with advantage, but attack rolls against you have advantage until your next turn."
+        },
+        {
+          "level": 2,
+          "name": "Fast Movement",
+          "description": "Your speed increases by 10 feet while you are not wearing heavy armor."
+        },
+        {
+          "level": 3,
+          "name": "Primal Path",
+          "description": "You choose a primal path that defines your connection to nature or your ancestors. Your choice grants features at 3rd, 6th, 10th, and 14th levels.",
+          "choice": {
+            "text": "Choose a Primal Path:",
+            "availableAtLevel": 3,
+            "options": [
+              {
+                "name": "Path of the Berserker",
+                "features": [
+                  {
+                    "level": 3,
+                    "name": "Frenzy",
+                    "description": "When you rage, you can go into a frenzy. Each turn during your rage, you can make one additional melee weapon attack as a bonus action. After the rage ends, you suffer one level of exhaustion."
+                  },
+                  {
+                    "level": 6,
+                    "name": "Mindless Rage",
+                    "description": "You can't be charmed or frightened while raging. If you are already under these conditions when you enter a rage, they end immediately."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Intimidating Presence",
+                    "description": "As an action, you can force a creature you can see within 10 feet to make a Wisdom saving throw if it can see and hear you. On a failed save, the target is frightened of you until the end of your next turn."
+                  },
+                  {
+                    "level": 14,
+                    "name": "Retaliation",
+                    "description": "When a creature deals melee damage to you, you can use your reaction to make a melee weapon attack against that creature."
+                  }
+                ]
+              },
+              {
+                "name": "Path of the Totem Warrior",
+                "features": [
+                  {
+                    "level": 3,
+                    "name": "Spirit Seeker",
+                    "description": "Yours is a path that seeks attunement to the spirit world, which can manifest as spirits of animals. You know the speak with animals spell."
+                  },
+                  {
+                    "level": 3,
+                    "name": "Totem Spirit",
+                    "description": "Choose an animal: Bear, Eagle, Elk, Giraffe, Lion, or Wolf. This choice grants a feature at 3rd level and again at 6th, 10th, and 14th levels.",
+                    "choice": {
+                      "text": "Choose your spirit animal:",
+                      "options": [
+                        {"name": "Bear", "feature": "While raging, you have resistance to all damage types except psychic."},
+                        {"name": "Eagle", "feature": "While raging, you have a flying speed equal to your walking speed. You can't wear heavy armor."},
+                        {"name": "Elk", "feature": "While raging, traveling companions can move up to 10 feet faster than normal."},
+                        {"name": "Giraffe", "feature": "Your walk speed increases by 10 feet and you have a reach of 10 feet with melee attacks."},
+                        {"name": "Lion", "feature": "While raging, you can use a bonus action to try to knock a Large or smaller creature prone or push it up to half your speed away from you."},
+                        {"name": "Wolf", "feature": "While raging, you can use a bonus action to allow allies within 5 feet of you to use their reaction to make a melee attack when a creature provokes opportunity attacks from them."}
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "name": "Ability Score Improvement",
+          "description": "You can increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 5,
+          "name": "Extra Attack",
+          "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        },
+        {
+          "level": 7,
+          "name": "Feral Instinct",
+          "description": "You have advantage on initiative rolls. If surprised and not incapacitated, you can act normally on your first turn if you end your rage before it ends."
+        },
+        {
+          "level": 9,
+          "name": "Brutal Critical",
+          "description": "You can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two dice at 9th level, three at 11th, and four at 16th."
+        },
+        {
+          "level": 11,
+          "name": "Relentless Rage",
+          "description": "When you drop to 0 hit points in combat, you can make a DC 10 Constitution saving throw to stay at 1 hit point. You regain hit points equal to your barbarian level on a success. You have one use, which resets after a long rest."
+        },
+        {
+          "level": 15,
+          "name": "Persistent Rage",
+          "description": "Your rage can't end prematurely due to being knocked unconscious or failing a concentration check. It can still end early due to other factors."
+        },
+        {
+          "level": 18,
+          "name": "Indomitable Might",
+          "description": "If your total for a Strength check is less than your Strength score, you can use that score instead."
+        },
+        {
+          "level": 20,
+          "name": "Primal Champion",
+          "description": "Your Strength and Constitution scores increase by 4. Their maximum becomes 24."
+        }
+      ],
+      "rageDamage": {
+        "levels": {
+          "1-9": 2,
+          "10-15": 3,
+          "16+": 4
+        }
+      }
+    },
+    "Bard": {
+      "summary": "A magical performer whose songs can inspire allies and undermine foes.",
+      "hitDice": "d8",
+      "hpAt1stLevel": "8 + Constitution modifier",
+      "hpPerLevel": "5 + Constitution modifier",
+      "primaryAbility": "Charisma",
+      "savingThrows": ["Dexterity", "Charisma"],
+      "proficiencies": {
+        "armor": ["Light armor"],
+        "weapons": ["Simple weapons", "Hand crossbows", "Longswords", "Shortswords", "Rapier"],
+        "tools": {
+          "choice": {
+            "text": "Choose three musical instruments:",
+            "options": ["Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol"],
+            "choose": 3
+          }
+        },
+        "skills": {
+          "from": [
+            "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+            "History", "Insight", "Intimidation", "Investigation", "Medicine",
+            "Nature", "Perception", "Performance", "Persuasion", "Religion",
+            "Sleight of Hand", "Stealth", "Survival"
+          ],
+          "choose": 3
+        }
+      },
+      "startingEquipment": {
+        "choiceA": [{"name": "Rapier", "qty": 1}],
+        "choiceB": [{"name": "Longsword", "qty": 1}],
+        "choiceC": [{"name": "Any simple weapon", "qty": 1}],
+        "choiceD": [{"name": "Diplomat's Pack", "qty": 1}],
+        "choiceE": [{"name": "Entertainer's Pack", "qty": 1}],
+        "additionalItems": [
+          {"name": "Lute", "qty": 1},
+          {"name": "Leather armor", "qty": 1},
+          {"name": "Dagger", "qty": 1}
+        ]
+      },
+      "multiClassing": {
+        "prerequisites": {"CHA": 13},
+        "proficienciesGranted": ["Light armor", "One skill of your choice", "One musical instrument of your choice"]
+      },
+      "features": [
+        {
+          "level": 1,
+          "name": "Spellcasting",
+          "description": "You have learned to untangle and reshape the fabric of reality with melody and words. Charisma is your spellcasting ability."
+        },
+        {
+          "level": 1,
+          "name": "Bardic Inspiration",
+          "description": "You can inspire others through stirring words. You have a number of uses equal to your Charisma modifier (minimum 1), regaining all on a long rest. A creature rolls a Bardic Inspiration die and adds it to one ability check, attack roll, or saving throw within 10 minutes.",
+          "dieSize": {
+            "1-4": "d6",
+            "5-9": "d8",
+            "10-14": "d10",
+            "15+": "d12"
+          }
+        },
+        {
+          "level": 2,
+          "name": "Jack of All Trades",
+          "description": "You can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus."
+        },
+        {
+          "level": 2,
+          "name": "Song of Rest",
+          "description": "You can use soothing music to aid companions during a short rest. They regain additional hit points when they spend Hit Dice, equal to your Charisma modifier (minimum 1).",
+          "bonusHP": {
+            "2-9": "1d6",
+            "10-14": "1d8",
+            "15-18": "1d10",
+            "19+": "1d12"
+          }
+        },
+        {
+          "level": 3,
+          "name": "Bard College",
+          "description": "You delve into the secrets of a particular bard college. Your choice grants features at 3rd, 6th, and 14th levels.",
+          "choice": {
+            "text": "Choose a Bard College:",
+            "availableAtLevel": 3,
+            "options": [
+              {
+                "name": "College of Creation",
+                "description": "Bards of this college are driven to create beauty in the world, often animating objects and weaving music into living things.",
+                "features": [
+                  {"level": 3, "name": "Performance of Creation", "description": "As a bonus action, you can animate a magic item of Tiny size or create a Tiny object from nonmagical materials using musical instruments as a focus."},
+                  {"level": 6, "name": "Mote of Potential", "description": "When you or another creature within 60 feet makes an attack roll, ability check, or saving throw, you can expend one use of Bardic Inspiration to give them an extra d6 bonus."},
+                  {"level": 14, "name": "Animating Performance", "description": "Your animated objects can be more powerful, including larger sizes and stronger abilities."}
+                ]
+              },
+              {
+                "name": "College of Glamour",
+                "description": "These bards learn the arts of enchantment from ancient fey lords and ladies.",
+                "features": [
+                  {"level": 3, "name": "Enthralling Performance", "description": "You can captivate a gathering of up to ten creatures within 60 feet for up to 1 minute."},
+                  {"level": 3, "name": "Mantle of Inspiration", "description": "As a bonus action, you grant up to ten creatures within 60 feet temporary hit points and the ability to move without opportunity attacks."},
+                  {"level": 6, "name": "Enveloping Inspire", "description": "You can grant a creature temporary hit points and immunity to being frightened, charmed, or paralyzed while you maintain your enchantment."},
+                  {"level": 14, "name": "Elysian Enchantment", "description": "Once per day, you can force up to five creatures within 60 feet to make a Wisdom saving throw or become charmed for up to 8 hours."}
+                ]
+              },
+              {
+                "name": "College of Lore",
+                "description": "Bards of this college are concerned with the accumulation of knowledge rather than the practice of performance.",
+                "features": [
+                  {"level": 3, "name": "Bonus Proficiencies", "description": "Gain proficiency with three skills of your choice."},
+                  {"level": 3, "name": "Cutting Words", "description": "Use a reaction to subtract a Bardic Inspiration die from an attack roll, ability check, or damage roll made by a creature within 60 feet."},
+                  {"level": 6, "name": "Peerless Skill", "description": "Add a Bardic Inspiration die to your own ability checks when you fail."},
+                  {"level": 14, "name": "Magical Secrets", "description": "Learn two spells of any class that appear on the Bard list."}
+                ]
+              },
+              {
+                "name": "College of Spirits",
+                "description": "These bards tell tales of spirits and the dead, drawing power from the ethereal plane.",
+                "features": [
+                  {"level": 3, "name": "Spiritual Focus", "description": "You can use a spirit medium as a spellcasting focus."},
+                  {"level": 3, "name": "Tales of Beyond", "description": "Roll on the Spirit Guide Table to gain various mystical benefits."},
+                  {"level": 6, "name": "Hearth of Light", "description": "Create a 15-foot radius sphere of light that grants allies advantage on attacks against undead and fiends."},
+                  {"level": 14, "name": "Guiding Wrath", "description": "When a creature within 60 feet makes an attack roll, you can use a reaction to add a d6 to their roll and the spirits guide their strike."}
+                ]
+              },
+              {
+                "name": "College of Swords",
+                "description": "Scorned as dabblers by traditional bards, these performers fight with blades.",
+                "features": [
+                  {"level": 3, "name": "Bonus Proficiency", "description": "Gain proficiency with scimitars and the Fighting Style: Dueling, Two-Weapon Fighting, or Scramble."},
+                  {"level": 3, "name": "Blade Flourish", "description": "As a bonus action, expend Bardic Inspiration die to perform special sword maneuvers."},
+                  {"level": 6, "name": "Master's Flourish", "description": "Increase the effects of Blade Flourish and gain additional defensive capabilities."},
+                  {"level": 14, "name": "Spinning Slash", "description": "Move up to half your speed and make a weapon attack as a bonus action, affecting multiple targets."}
+                ]
+              },
+              {
+                "name": "College of Stars",
+                "description": "These bards draw upon the mysterious energies of the cosmos itself.",
+                "features": [
+                  {"level": 3, "name": "Starry Form", "description": "Assume a constellation shape granting different benefits."},
+                  {"level": 3, "name": "Astrological Arcana", "description": "Regain expended spell slots by assuming Starry Form."},
+                  {"level": 6, "name": "Stellar Guidance", "description": "Grant advantage on attack rolls or saving throws using starlight."},
+                  {"level": 14, "name": "Cosmic Overflow", "description": "Transform into a celestial being with enhanced spellcasting and radiant damage abilities."}
+                ]
+              },
+              {
+                "name": "College of Thieves",
+                "description": "These bards embrace the criminal underworld and master the art of stealth.",
+                "features": [
+                  {"level": 3, "name": "Thief's Best Friend", "description": "Gain proficiency with Thieves' Tools and additional skill proficiencies."},
+                  {"level": 3, "name": "Sneak Attack Integration", "description": "Incorporate Rogue-like sneak attack mechanics with Bardic Inspiration."},
+                  {"level": 6, "name": "Shadow Step", "description": "Teleport between shadows and gain invisibility capabilities."},
+                  {"level": 14, "name": "Master of Intrigue", "description": "Advanced stealth and deception capabilities."}
+                ]
+              },
+              {
+                "name": "College of Valor",
+                "description": "These bards are warriors who inspire their comrades in battle through song and story.",
+                "features": [
+                  {"level": 3, "name": "Combat Inspiration", "description": "Bardic Inspiration can be used for damage, AC, or initiative instead of just ability checks."},
+                  {"level": 3, "name": "Bonus Proficiencies", "description": "Gain proficiency with Medium armor, Shields, and Martial weapons."},
+                  {"level": 6, "name": "Extra Attack", "description": "Make two attacks whenever you take the Attack action."},
+                  {"level": 14, "name": "Battle Magic", "description": "After casting a spell, you can make a weapon attack as a bonus action."}
+                ]
+              },
+              {
+                "name": "College of Whispers",
+                "description": "These bards harvest fears and secrets, striking at the psyche of their enemies.",
+                "features": [
+                  {"level": 3, "name": "Psychic Blades", "description": "Add psychic damage to weapon hits using Bardic Inspiration die."},
+                  {"level": 3, "name": "Words of Terror", "description": "Instill fear in creatures with whispers and stories."},
+                  {"level": 6, "name": "Mind Razor", "description": "Cast modify mind spells more frequently or with increased effect."},
+                  {"level": 14, "name": "Mantle of Shadows", "description": "Gain abilities related to stealth and illusion magic."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 5,
+          "name": "Font of Inspiration",
+          "description": "Regain all expended uses of Bardic Inspiration after a short or long rest."
+        },
+        {
+          "level": 6,
+          "name": "Countercharm",
+          "description": "You gain the ability to use musical notes or words to counteract harmful magical effects."
+        },
+        {
+          "level": 8,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 10,
+          "name": "Magical Secrets",
+          "description": "Learn two spells from any class. These count as Bard spells."
+        },
+        {
+          "level": 12,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 14,
+          "name": "Magical Secrets",
+          "description": "Learn two more spells from any class."
+        },
+        {
+          "level": 16,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 18,
+          "name": "Magical Secrets",
+          "description": "Learn two more spells from any class (third acquisition)."
+        },
+        {
+          "level": 19,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 20,
+          "name": "Superior Inspiration",
+          "description": "When you roll initiative and have no uses of Bardic Inspiration remaining, regain one use."
+        }
+      ],
+      "spellcasting": {
+        "ability": "Charisma",
+        "cantripsKnown": [
+          {"level": 1, "count": 2},
+          {"level": 4, "count": 3},
+          {"level": 10, "count": 4}
+        ],
+        "spellsKnown": [
+          {"level": 1, "count": 4},
+          {"level": 2, "count": 5},
+          {"level": 3, "count": 6},
+          {"level": 4, "count": 7},
+          {"level": 5, "count": 8},
+          {"level": 6, "count": 9},
+          {"level": 7, "count": 10},
+          {"level": 8, "count": 11},
+          {"level": 9, "count": 12},
+          {"level": 10, "count": 13},
+          {"level": 11, "count": 14},
+          {"level": 13, "count": 15},
+          {"level": 14, "count": 16},
+          {"level": 15, "count": 17},
+          {"level": 16, "count": 18},
+          {"level": 18, "count": 19},
+          {"level": 19, "count": 20},
+          {"level": 20, "count": 22}
+        ],
+        "spellSlotsByLevel": {
+          "1st": {"1": 2, "2": 3, "3": 4, "4": 4, "5": 4, "6": 4, "7": 4, "8": 4, "9": 4},
+          "2nd": {"3": 2, "4": 3, "5": 3, "6": 3, "7": 3, "8": 3, "9": 3, "10": 3},
+          "3rd": {"5": 2, "6": 3, "7": 3, "8": 3, "9": 3, "10": 3},
+          "4th": {"7": 1, "8": 2, "9": 3, "10": 3},
+          "5th": {"9": 1, "10": 2, "11": 2, "12": 2, "13": 2, "14": 2},
+          "6th": {"11": 1, "12": 2, "13": 2, "14": 2},
+          "7th": {"13": 1, "14": 2},
+          "8th": {"15": 1, "16": 1},
+          "9th": {"17": 1}
+        }
+      }
+    },
+    "Fighter": {
+      "summary": "A master of martial combat, skilled with a variety of weapons and armor.",
+      "hitDice": "d10",
+      "hpAt1stLevel": "10 + Constitution modifier",
+      "hpPerLevel": "6 + Constitution modifier",
+      "primaryAbility": "Strength or Dexterity",
+      "savingThrows": ["Strength", "Constitution"],
+      "proficiencies": {
+        "armor": ["All armor", "Shields"],
+        "weapons": ["Simple weapons", "Martial weapons"],
+        "tools": [],
+        "skills": {
+          "from": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
+          "choose": 2
+        }
+      },
+      "startingEquipment": {
+        "choiceA": [
+          {"name": "Chain mail", "qty": 1}
+        ],
+        "choiceB": [
+          {"name": "Leather armor", "qty": 1},
+          {"name": "Longbow", "qty": 1},
+          {"name": "Arrows", "qty": 20, "unit": "Stück"}
+        ],
+        "additionalItems": [
+          {"name": "ChoiceA: Martial weapon + shield OR Two martial weapons", "qty": 1},
+          {"name": "ChoiceB: Light crossbow + 20 bolts OR Two handaxes", "qty": 1},
+          {"name": "Dungeoneer's Pack", "qty": 1}
+        ]
+      },
+      "multiClassing": {
+        "prerequisites": {"STR": 13},
+        "proficienciesGranted": ["Light armor", "Medium armor", "Heavy armor", "Shields", "Simple weapons", "Martial weapons"]
+      },
+      "features": [
+        {
+          "level": 1,
+          "name": "Fighting Style",
+          "description": "You adopt a particular style of fighting as your specialty. Choose one option: Archery, Defense, Dueling, Great Weapon Fighting, Protection, or Two-Weapon Fighting.",
+          "choice": {
+            "text": "Choose a Fighting Style:",
+            "options": [
+              {"name": "Archery", "description": "You gain a +2 bonus to attack rolls you make with ranged weapons."},
+              {"name": "Defense", "description": "While you are wearing armor, you gain a +1 bonus to AC."},
+              {"name": "Dueling", "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."},
+              {"name": "Great Weapon Fighting", "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll."},
+              {"name": "Protection", "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll."},
+              {"name": "Two-Weapon Fighting", "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack."}
+            ]
+          }
+        },
+        {
+          "level": 1,
+          "name": "Second Wind",
+          "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. As a bonus action, you regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again."
+        },
+        {
+          "level": 2,
+          "name": "Action Surge",
+          "description": "You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action. Once you use this feature, you must finish a short or long rest before you can use it again. At 17th level, you can use it twice before a rest, but only once on the same turn."
+        },
+        {
+          "level": 3,
+          "name": "Martial Archetype",
+          "description": "You choose an archetype that you strive to emulate in your combat styles and techniques. Your choice grants features at 3rd, 7th, 10th, 15th, and 18th levels.",
+          "choice": {
+            "text": "Choose a Martial Archetype:",
+            "availableAtLevel": 3,
+            "options": [
+              {
+                "name": "Battle Master",
+                "features": [
+                  {"level": 3, "name": "Combat Superiority", "description": "You learn maneuvers that are fueled by special dice called superiority dice. You learn three maneuvers of your choice and have four superiority dice (d8)."},
+                  {"level": 3, "name": "Student of War", "description": "You gain proficiency with one type of artisan's tools of your choice."},
+                  {"level": 7, "name": "Know Your Enemy", "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to yours."},
+                  {"level": 10, "name": "Improved Combat Superiority", "description": "Your superiority dice turn into d10s. At 18th level, they turn into d12s."},
+                  {"level": 15, "name": "Relentless", "description": "When you roll initiative and have no superiority dice remaining, you regain one superiority die."},
+                  {"level": 18, "name": "Improved Combat Superiority (d12)", "description": "Your superiority dice turn into d12s."}
+                ]
+              },
+              {
+                "name": "Champion",
+                "features": [
+                  {"level": 3, "name": "Improved Critical", "description": "Your weapon attacks score a critical hit on a roll of 19 or 20 on the d20."},
+                  {"level": 7, "name": "Remarkable Athlete", "description": "You can add half your proficiency bonus (rounded up) to any Strength, Dexterity, or Constitution check that doesn't already include your proficiency bonus."},
+                  {"level": 10, "name": "Secondary Specialization", "description": "Choose one additional Fighting Style."},
+                  {"level": 15, "name": "Additional Fighting Style", "description": "You can choose a second option from the Fighting Style feature."},
+                  {"level": 18, "name": "Superior Critical", "description": "Your weapon attacks score a critical hit on a roll of 18-20 on the d20."}
+                ]
+              },
+              {
+                "name": "Eldritch Knight",
+                "features": [
+                  {"level": 3, "name": "Spellcasting", "description": "You harness the power of magic to augment your physical prowess. Intelligence is your spellcasting ability."},
+                  {"level": 3, "name": "Weapon Bond", "description": "You learn a ritual that creates a magical bond between yourself and one weapon. You can summon it as a bonus action."},
+                  {"level": 7, "name": "War Magic", "description": "When you use your action to cast a cantrip, you can make one weapon attack as a bonus action."},
+                  {"level": 10, "name": "Eldritch Strike", "description": "When you hit a creature with a weapon attack, it has disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn."},
+                  {"level": 15, "name": "Arcane Charge", "description": "You can teleport up to 30 feet to an unoccupied space you can see. Then you can take one additional attack as part of the Attack action."},
+                  {"level": 18, "name": "Improved War Magic", "description": "When you use your action to cast a spell, you can make one weapon attack as a bonus action."}
+                ]
+              },
+              {
+                "name": "Psi Warrior",
+                "features": [
+                  {"level": 3, "name": "Psionic Power", "description": "You tap into a reservoir of psionic energy that you can draw on. You have psi ions equal to your Intelligence modifier (min 1)."},
+                  {"level": 3, "name": "Protective Field", "description": "As a bonus action, you can expend a psi ion to grant yourself or another creature within 30 feet temporary hit points."},
+                  {"level": 7, "name": "Expansive Mind", "description": "You can manipulate the minds of creatures around you."},
+                  {"level": 10, "name": "Telekinetic Assault", "description": "You can use your psi ions to move creatures or objects."},
+                  {"level": 15, "name": "Psychic Disciple", "description": "Your psionic powers become more potent."},
+                  {"level": 18, "name": "Psi-Powered Leap", "description": "Your psionic abilities allow for enhanced movement."}
+                ]
+              },
+              {
+                "name": "Rune Knight",
+                "features": [
+                  {"level": 3, "name": "Runic Casting", "description": "You learn to wield runic magic. You know two runes of your choice."},
+                  {"level": 3, "name": "Fire Rune", "description": "You can cast burning hands once per long rest using this rune."},
+                  {"level": 7, "name": "Enlarged/Reduced Rune", "description": "You can use a rune to grow larger or smaller."},
+                  {"level": 10, "name": "Cloud Giant's Might", "description": "Your runes become more powerful, allowing you to learn additional runes."},
+                  {"level": 15, "name": "Stone Giant's Might", "description": "Further enhancement to your rune abilities."},
+                  {"level": 18, "name": "Storm Giant's Might", "description": "Maximum rune power unlocked."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 5,
+          "name": "Extra Attack",
+          "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. This increases to three times at 11th level and four times at 20th level."
+        },
+        {
+          "level": 6,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 8,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 9,
+          "name": "Indomitable",
+          "description": "You can reroll a saving throw that you fail. Once you use this feature, you must finish a short or long rest before you can use it again. At higher levels, you can use it twice or thrice."
+        },
+        {
+          "level": 10,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 11,
+          "name": "Extra Attack (II)",
+          "description": "You can attack three times whenever you take the Attack action on your turn."
+        },
+        {
+          "level": 12,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 13,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 14,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 15,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 16,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 17,
+          "name": "Action Surge (II)",
+          "description": "You can use Action Surge twice before a rest, but only once on the same turn."
+        },
+        {
+          "level": 18,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 19,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 20,
+          "name": "Extra Attack (III)",
+          "description": "You can attack four times whenever you take the Attack action on your turn."
+        }
+      ]
+    },
+    "Artificer": {
+      "summary": "A master of innovation who infuses magic into objects and creates magical inventions.",
+      "hitDice": "d8",
+      "hpAt1stLevel": "8 + Constitution modifier",
+      "hpPerLevel": "5 + Constitution modifier",
+      "primaryAbility": "Intelligence",
+      "savingThrows": ["Constitution", "Intelligence"],
+      "proficiencies": {
+        "armor": ["Light armor", "Medium armor", "Shields"],
+        "weapons": ["Simple weapons", "Firearms"],
+        "tools": {
+          "choice": {
+            "text": "Choose two types of artisan's tools:",
+            "options": [
+              "Alchemist's supplies", "Smith's tools", "Tinker's tools", "Glassblower's tools",
+              "Woodcarver's tools", "Cobbler's tools", "Cartographer's tools", "Jeweler's tools",
+              "Leatherworker's tools", "Mason's tools", "Painter's tools", "Weaver's tools",
+              "Potter's tools"
+            ],
+            "choose": 2
+          }
+        },
+        "skills": {
+          "from": ["Arcana", "History", "Investigation", "Medicine", "Nature", "Perception", "Persuasion", "Sleight of Hand"],
+          "choose": 2
+        }
+      },
+      "startingEquipment": {
+        "choiceA": [
+          {"name": "Light crossbow", "qty": 1},
+          {"name": "Bolts", "qty": 20, "unit": "Stück"}
+        ],
+        "choiceB": [
+          {"name": "Any simple weapon", "qty": 1}
+        ],
+        "additionalItems": [
+          {"name": "Explorer's pack", "qty": 1},
+          {"name": "Two tinker's tools", "qty": 2},
+          {"name": "Leather armor", "qty": 1},
+          {"name": "Thieves' tools", "qty": 1},
+          {"name": "Component pouch", "qty": 1}
+        ]
+      },
+      "multiClassing": {
+        "prerequisites": {"INT": 13},
+        "proficienciesGranted": ["Light armor", "Medium armor", "Shields", "Simple weapons", "Firearms", "Two types of artisan's tools"]
+      },
+      "features": [
+        {
+          "level": 1,
+          "name": "Magical Tinkering",
+          "description": "You can imbue mundane objects with minor magical effects. You can affect up to six objects, each receiving one effect. Effects include: store a sound, tell time, cause a small flame, mimic a simple action, or play a simple melody."
+        },
+        {
+          "level": 1,
+          "name": "Spellcasting",
+          "description": "Intelligence is your spellcasting ability. You know a number of cantrips and have spell slots based on your artificer level. You prepare spells from the artificer spell list."
+        },
+        {
+          "level": 2,
+          "name": "Infuse Item",
+          "description": "You can imbue items with magical properties. You learn infusions and can maintain a certain number simultaneously.",
+          "infusionsKnown": {
+            "2": 4, "3": 4, "5": 5, "7": 6, "9": 7, "11": 8, "13": 9, "15": 10, "17": 11, "19": 12, "20": 12
+          },
+          "simultaneousInfusions": {
+            "2": 2, "6": 3, "10": 4, "14": 5, "18": 6
+          },
+          "infusionList": [
+            {"name": "Armor of Arcane Power", "requirements": "Medium or heavy armor", "description": "Armor gains +1 AC. While wearing it, you can cast mage armor once without expending a spell slot."},
+            {"name": "Enhanced Defense", "requirements": "Armor or shield", "description": "Item gains +1 AC (+2 at level 11). When you attune to it, you gain an additional temporary hit point."},
+            {"name": "Enhanced Weapon", "requirements": "Simple or martial weapon", "description": "Weapon gains +1 to attack and damage rolls (+2 at level 11). Considered magical for resistance/immunity."},
+            {"name": "Firearm Enhancement", "requirements": "Firearm", "description": "Firearm gains +1 to attack and damage rolls (+2 at level 11)."},
+            {"name": "Replicate Magic Item", "requirements": "Varies", "description": "Create various magic items including: Bag of Holding, Boots of Levitation, Cloak of Protection, Dust of Sneezing and Choking, Gloves of Thievery, Immovable Rod, Iron Flask, Lantern of Revealing, Oil of Slipperiness, Potion of Healing, Rope of Climbing, Slippers of Spider Climb, Wand of Magic Detection, Wand of Secrets."},
+            {"name": "Homunculus Servant", "requirements": "Requires tinker's tools", "description": "Create a Tiny construct that serves you. Has its own AC, HP, and abilities. Can deliver your touch spells."},
+            {"name": "Mind Sharpener", "requirements": "Armor", "description": "When you fail a Constitution saving throw to maintain concentration, succeed instead. Can only benefit once per long rest."},
+            {"name": "Repeating Shot", "requirements": "Firearm", "description": "Removes reload property. Creates ammunition when fired. You can use a bonus action to stop creating ammo."},
+            {"name": "Thundering Weapon", "requirements": "Weapon", "description": "When you hit with an attack, target must make Con save or take 2d6 thunder damage and be knocked prone."},
+            {"name": "Radiant Weapon", "requirements": "Weapon", "description": "Weapon sheds bright light. On crit or after hitting an undead/fiend, deal 2d6 radiant damage."},
+            {"name": "Return to Sender", "requirements": "Medium or Heavy Armor", "description": "When hit by a ranged weapon attack, attacker takes 2d6 force damage. Can only trigger once per round."},
+            {"name": "Vorpal Weapon", "requirements": "Weapon", "description": "When you score a critical hit with a slashing weapon, decapitate the target if it fails a Constitution save."},
+            {"name": "Wand of Wonder", "requirements": "None", "description": "Hold the wand to cast a random spell from a table. Roll d100 for effect."},
+            {"name": "Weapon of Warning", "requirements": "Weapon", "description": "Target is alerted to ambushes and surprise situations. Attacker has disadvantage on surprise attacks."}
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Tool Expertise",
+          "description": "Your proficiency bonus is doubled for any ability check you make that uses a tool you're proficient with."
+        },
+        {
+          "level": 3,
+          "name": "Artificer Specialist",
+          "description": "You choose an arcane specialty that defines your approach to innovation. Your choice grants features at 3rd, 5th, 7th, and 15th levels.",
+          "choice": {
+            "text": "Choose an Artificer Specialist:",
+            "availableAtLevel": 3,
+            "options": [
+              {
+                "name": "Alchemist",
+                "description": "Alchemists focus on the transformative power of potions and elixirs.",
+                "features": [
+                  {"level": 3, "name": "Experimental Elixir", "description": "As a bonus action, you can brew a potion with random beneficial effects. Roll d10: 1-2 Healing (2d4+2 HP), 3 Flight (20 ft fly speed for 10 min), 4 Giant Form (grow to medium size, +10 ft speed), 5 Speed (doubled speed for 10 min), 6 Teleportation (teleport up to 60 ft), 7-8 Shield (+2 AC for 10 min), 9-10 Nothing happens but potion remains usable.", "uses": "Equal to Intelligence modifier per long rest"},
+                  {"level": 3, "name": "Restorative Reagents", "description": "When you cast a spell using a spell slot that restores hit points, the target regains additional HP equal to half your artificer level."},
+                  {"level": 5, "name": "Flash of Genius", "description": "Use reaction to grant yourself or ally +5 to ability check or saving throw within 30 feet. Regain uses after long rest equal to INT modifier."},
+                  {"level": 7, "name": "Magic Item Savant", "description": "You ignore all class, race, and level requirements on the use of magic items."},
+                  {"level": 15, "name": "Magic Item Master", "description": "You can attune to up to 6 magic items at once and craft common magic items in half the time."}
+                ]
+              },
+              {
+                "name": "Armorer",
+                "description": "Armorer artificers specialize in creating powered armor suits.",
+                "features": [
+                  {"level": 3, "name": "Arcane Armor", "description": "You can attach special weaponry to your armor. Choose a model: Guardian (Heavy) or Infiltrator (Light/Medium)."},
+                  {"level": 3, "name": "Armor Model", "description": "Choose Armor Model:", "choice": {"text": "Choose Armor Model:", "options": [{"name": "Guardian", "description": "Heavy armor with Thunder Weapon. Attacks use STR or INT (your choice). Damage: 1d8 thunder. Can draw/relocate weapon as free action. Extra Attack feature works with this weapon."}, {"name": "Infiltrator", "description": "Light/Medium armor with Lightning Launcher. Ranged attack (120 ft range). Uses INT for attack/damage. Damage: 1d6 lightning. Can draw/relocate weapon as free action. Extra Attack feature works with this weapon."}]}},
+                  {"level": 5, "name": "Extra Attack", "description": "Make two attacks whenever you take the Attack action with your Arcane Armor weapon."},
+                  {"level": 7, "name": "Armor Modifications", "description": "You can infuse your Arcane Armor. Each infusion can be applied once unless stated otherwise. Armor counts as separate items for Infuse Item feature."},
+                  {"level": 15, "name": "Supernatural Defense", "description": "Gain +5 to STR or DEX saving throws. Use reaction to apply after failing. Once used, can't use again until long rest. Regains uses equal to INT modifier per long rest."}
+                ]
+              },
+              {
+                "name": "Artillerist",
+                "description": "Artillerists focus on magical weaponry and explosive power.",
+                "features": [
+                  {"level": 3, "name": "Eldritch Cannon", "description": "Create a magical cannon as a bonus action. Choose type: Flamethrower, Force Ballista, or Protector.", "stats": {"size": "Tiny", "AC": "13 + proficiency bonus", "HP": "5 + artificer level", "immune": "poison, psychic", "vulnerable": "fire"}, "choice": {"text": "Choose Eldritch Cannon type:", "options": [{"name": "Flamethrower", "description": "Action to ignite. Creates 15-ft cone of fire. Creatures make Dex save (DC 8 + prof + INT). Fail = 2d8 fire damage, half on success. Can't use again until start of next turn."}, {"name": "Force Ballista", "description": "Action to fire. Make ranged spell attack (range 120 ft). Hit = 2d8 force damage. As bonus action, move cannon up to 30 ft."}, {"name": "Protector", "description": "Action to activate. Allies within 10 ft gain temporary HP = 1d8 + half artificer level. Can't use again until start of next turn."}]}},
+                  {"level": 3, "name": "Eldritch Cannon Abilities", "description": "Cannon has HP and AC based on artificer level. Can't be attacked directly by allies."},
+                  {"level": 5, "name": "Forceful Eldritch Cannon", "description": "Cannon's attacks can push enemies. Force Ballista pushes 10 ft, Protector prevents movement."},
+                  {"level": 7, "name": "Extra Eldritch Cannon", "description": "Can maintain two cannons at once. Both share the same activation turn."},
+                  {"level": 15, "name": "Epic Cannon", "description": "Cannon deals extra damage. Flamethrower/Fireball: +1d8, Force Ballista: +1d8."}
+                ]
+              },
+              {
+                "name": "Battle Smith",
+                "description": "Battle Smiths are martial artificers who fight alongside constructed allies.",
+                "features": [
+                  {"level": 3, "name": "Battle Ready", "description": "Use Intelligence for attack and damage rolls with martial weapons. Proficiency with martial weapons."},
+                  {"level": 3, "name": "Steel Defender", "description": "Summon a mechanical companion that fights alongside you.", "stats": {"AC": "14 + proficiency bonus", "HP": "5 + artificer level", "damageDie": "1d8 + INT modifier", "speed": "40 ft", "abilities": "Independent creature with its own turn"}, "actions": [{"name": "Ram", "description": "Melee attack + INT mod. Hit = STR mod + 1d8 force damage. Target must make STR save or pushed 10 ft."}, {"name": "Protective Bond", "description": "Reaction to intercept attack meant for you or ally within 5 ft. Takes damage instead."}]},
+                  {"level": 5, "name": "Extra Attack", "description": "Make two attacks whenever you take the Attack action."},
+                  {"level": 7, "name": "Magic Weapon", "description": "Your weapon attacks are considered magical for overcoming resistance/immunity."},
+                  {"level": 15, "name": "Improved Defender", "description": "Steel Defender's attacks deal extra damage (add INT modifier to damage rolls). Can use reaction to attack after you attack."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "level": 4,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 5,
+          "name": "Extra Attack",
+          "description": "Make two attacks whenever you take the Attack action with a weapon."
+        },
+        {
+          "level": 6,
+          "name": "Magic Item Adept",
+          "description": "You can attune to up to 3 magic items at once. Ignore weight restrictions on items that require attunement."
+        },
+        {
+          "level": 7,
+          "name": "Spell-Storing Item",
+          "description": "Store a 1st or 2nd level spell in an object. Creature can use action to cast it. Can be stored twice before needing recharge."
+        },
+        {
+          "level": 9,
+          "name": "Magic Item Savant",
+          "description": "You ignore all class, race, and level requirements on the use of magic items."
+        },
+        {
+          "level": 10,
+          "name": "Magic Item Master",
+          "description": "You can attune to up to 6 magic items at once and can craft common magic items in one-tenth the normal time."
+        },
+        {
+          "level": 11,
+          "name": "Spellcasting Feature Upgrade",
+          "description": "Cantrips known increases to 4. Spell preparation formula updates."
+        },
+        {
+          "level": 12,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 14,
+          "name": "Spellcasting Feature Upgrade",
+          "description": "Infusions known increases to 10. Simultaneous infusions increases to 5."
+        },
+        {
+          "level": 16,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 18,
+          "name": "Spellcasting Feature Upgrade",
+          "description": "Simultaneous infusions increases to 6."
+        },
+        {
+          "level": 19,
+          "name": "Ability Score Improvement",
+          "description": "Increase one ability score by 2, or two ability scores by 1 each."
+        },
+        {
+          "level": 20,
+          "name": "Soul of Artifice",
+          "description": "Each magic item you're attuned to gives +1 to all saving throws. You can dismiss all infusions and magic items as bonus action, gaining temporary HP equal to artificer level × number of items."
+        }
+      ],
+      "spellcasting": {
+        "ability": "Intelligence",
+        "cantripsKnown": [
+          {"level": 1, "count": 2},
+          {"level": 4, "count": 3},
+          {"level": 10, "count": 4}
+        ],
+        "spellsPrepared": {
+          "formula": "Intelligence modifier + half artificer level (rounded down)",
+          "min": 1
+        },
+        "spellSlotsByLevel": {
+          "1st": {"1": 2, "2": 2, "3": 2, "4": 3, "5": 3, "6": 3, "7": 4, "8": 4, "9": 4, "10": 4, "11": 4, "12": 4, "13": 4, "14": 4, "15": 4, "16": 4, "17": 4, "18": 4, "19": 4, "20": 4},
+          "2nd": {"3": 1, "4": 2, "5": 2, "6": 2, "7": 3, "8": 3, "9": 3, "10": 3, "11": 3, "12": 3, "13": 3, "14": 3, "15": 3, "16": 3, "17": 3, "18": 3, "19": 3, "20": 3},
+          "3rd": {"5": 1, "6": 1, "7": 2, "8": 2, "9": 3, "10": 3, "11": 3, "12": 3, "13": 3, "14": 3, "15": 3, "16": 3, "17": 3, "18": 3, "19": 3, "20": 3},
+          "4th": {"7": 1, "8": 2, "9": 2, "10": 3, "11": 3, "12": 3, "13": 3, "14": 3, "15": 3, "16": 3, "17": 3, "18": 3, "19": 3, "20": 3},
+          "5th": {"9": 1, "10": 1, "11": 2, "12": 2, "13": 2, "14": 2, "15": 2, "16": 2, "17": 2, "18": 2, "19": 2, "20": 2},
+          "6th": {"11": 1, "12": 1, "13": 1, "14": 1, "15": 1, "16": 1, "17": 1, "18": 1, "19": 1, "20": 1},
+          "7th": {"13": 1, "14": 1, "15": 1, "16": 1, "17": 1, "18": 1, "19": 1, "20": 1},
+          "8th": {"15": 1, "16": 1, "17": 1, "18": 1, "19": 1, "20": 1},
+          "9th": {"17": 1, "18": 1, "19": 1, "20": 1}
+        },
+        "spellList": [
+          "Control Weather", "Dispel Magic", "Glyph of Warding", "Misty Step", "Polymorph", "Resurrection", "Wind Walk", "Animate Objects", "Bigby's Hand", "Blade Barrier", "Cloudkill", "Confusion", "Contagion", "Daylight", "Dust Devil", "Earth Tremor", "Fabricate", "Feather Fall", "Fire Bolt", "Guiding Bolt", "Heat Metal", "Hunter's Mark", "Identify", "Ice Knife", "Jump", "Lesser Restoration", "Magic Weapon", "Protection from Evil and Good", "Ray of Frost", "Shield", "Shield of Faith", "Silence", "Snare", "Spider Climb", "Tasha's Caustic Brew", "Thunderwave", "Water Walk", "Warding Wind", "Wind Wall"
+        ]
+      }
+    }
+  }
+}
