@@ -1,5 +1,144 @@
 {
   "races": {
+    "Aasimar": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß oder klein",
+      "sizeDetails": {
+        "from": 60,
+        "to": 120,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Aasimar sind Sterbliche, die einen Funken der Oberen Ebenen in der Seelen tragen. Ob sie von einem Engelswesen abstammen oder von celestischer Kraft erfüllt sind – sie können diesen Funken entfachen, um Licht und Heilung zu bringen oder himmlische Wut zu entfesseln. Aasimar können aus jedem sterblichen Volk hervorgehen. Sie sehen ihren Eltern ähnlich, können jedoch bis zu 160 Jahre alt werden und haben Merkmale, die auf ihr celestisches Erbe hindeuten, beispielsweise metallisch schimmernde Sommersprossen, leuchtende Augen, einen Heiligenschein oder die Hautfarbe eines Engels (silbern, strahlend grün oder kupferrot). Diese Merkmale sind zunächst subtil, werden aber offenkundig, wenn ein Aasimar lernt, seine volle celestische Natur zu enthüllen.",
+      "traits": [
+        {
+          "name": "Celestische Resistenz",
+          "description": "Du bist gegen gleißenden und nekrotischen Schaden resistent."
+        },
+        {
+          "name": "Dunkelsicht",
+          "description": "Du hast Dunkelsicht mit einer Reichweite von 18 Metern."
+        },
+        {
+          "name": "Heilende Hände",
+          "description": "Als magische Aktion kannst du eine Kreatur berühren und mit einer Anzahl von W4 in Höhe deines Übungsbonus würfeln. Die Kreatur erhält Trefferpunkte in Höhe des Gesamtergebnisses zurück. Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden."
+        },
+        {
+          "name": "Lichtträger",
+          "description": "Du kennst den Zaubertrick Licht. Dein Attribut zum Wirken des Zaubers ist Charisma."
+        },
+        {
+          "name": "Celestische Offenbarung",
+          "description": "Wenn du die 3. Charakterstufe erreichst, kannst du dich als Bonusaktion entsprechend einer der Optionen unten verwandeln (wähle bei jeder Verwandlung eine Option aus). Die Verwandlung bleibt eine Minute lang bestehen, oder bis du sie beendest (keine Aktion erforderlich). Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden. Bis zum Ende der Verwandlung kannst du einmal pro Zug einem Ziel, dem du mit einem Angriff oder einem Zauber Schaden zufügst, zusätzlichen Schaden zufügen. Der zusätzliche Schaden entspricht deinem Übungsbonus und ist entweder gleißend (bei Himmlische Flügel und Inneres Strahlen) oder nekrotisch (bei Nekrotische Spukgestalt).\nDies sind deine Verwandlungsoptionen:\n- Himmlische Flügel: Dir wachsen vorübergehend zwei geisterhafte Flügel. Bis zum Ende der Verwandlung hast du eine Flugbewegungsrate in Höhe deiner Bewegungsrate.\n- Inneres Strahlen: Vorübergehend strahlt dir intensives Licht aus Augen und Mund. Für die Wirkungsdauer spendest du in einem Radius von drei Metern helles Licht und in einem Radius von weiteren drei Metern dämmriges Licht, und am Ende jedes deines Züge erleidet jede Kreatur im Abstand von bis zu drei Metern von dir gleißenden Schaden in Höhe deines Übungsbonus.\n- Nekrotische Spukgestalt: Deine Augen werden kurz zu Tümpeln der Dunkelheit, und dir wachsen flugunfähige Flügel. Alle Kreaturen im Abstand von bis zu drei Metern von dir, die nicht mit dir verbündet sind, müssen einen Charismarettungwurf (SG 8 plus dein Charismamodifikator plus dein Übungsbonus) bestehen, oder sie sind bis Ende des nächsten Zugs verängstigt."
+        }
+      ],
+      "subtypes": null
+    },
+    "Drachenblütiger": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß",
+      "sizeDetails": {
+        "from": 150,
+        "to": 210,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Die Vorfahren von Drachenblütigen sind aus den Eiern chromatischer oder metallischer Drachen geschlüpft. Einer Geschichte zufolge wurden diese Eier von den Drachengöttern Bahamut und Tiamat gesegnet, die das Multiversum mit ihren Ebenbildern bevölkern wollten. Andere behaupten, dass die ersten Drachenblütigen ohne göttlichen Segen von Drachen geschaffen wurden. Was immer ihr Ursprung sein mag – die Drachenblütigen haben sich auf der materielle Ebene eine Heimat geschaffen. Drachenblütige sehen aus wie flügellose zweibeinige Drachen: Sie haben Schuppen, strahlende Augen, massive Krochen sowie Hörner, ihre Farbgebung und andere Merkmale deuten auf die Art ihrer drakonischen Ahnen hin.",
+      "traits": [
+        {
+          "name": "Dunkelsicht",
+          "description": "Du hast Dunkelsicht mit einer Reichweite von 18 Metern."
+        },
+        {
+          "name": "Drakonische Abstammung",
+          "description": "Deine Abstammungslinie geht auf einen Drachenvorfahren zurück. Wähle die Art des Drachen aus der Tabelle „Drakonische Ahnen“ aus. Diese Entscheidung bestimmt deine Odemwaffe, deine Schadensresistenz sowie dein Erscheinungsbild.",
+          "choice": {
+            "text": "Wähle deine drakonischen Ahnen:",
+            "options": [
+              "Blau (Blitz)", "Bronze (Blitz)", "Gold (Feuer)", "Grün (Gift)", "Kupfer (Säure)",
+              "Messing (Feuer)", "Rot (Feuer)", "Schwarz (Säure)", "Silber (Kälte)", "Weiß (Kälte)"
+            ]
+          }
+        },
+        {
+          "name": "Odemwaffe",
+          "description": "Wenn du in deinem Zug die Angriffsaktion ausführst, kannst du einen der Angriffe durch einen Ausatmen magischer Energie ersetzen, die sich entweder in einem Kegel von 4,5 Metern oder in einer neun Meter langen, 1,5 Meter breiten Linie ausbreitet (wähle die Form bei jedem Einsatz aus). Jede Kreatur in diesem Bereich muss einen Geschicklichkeitsrettungswurf (SG 8 plus dein Konstitutionsmodifikator plus dein Übungsbonus) ausführen. Scheitert der Wurf, so erleidet die Kreatur 1W10 Schaden der Art, die deiner drakonischen Abstammung entspricht. Bei einem erfolgreichen Rettungswurf erleidet die Kreatur halb so viel Schaden. Dieser Schaden wird um jeweils 1W10 erhöht, wenn du die 5. (2W10), die 11. (3W10) und die 17. (4W10) Charakterstufe erreichst. Die Häufigkeit, mit der du diese Odemwaffe einsetzen kannst, entspricht deinem Übungsbonus. Du erhältst alle verbrauchten Anwendungen nach einer langen Rast zurück."
+        },
+        {
+          "name": "Schadensresistenz",
+          "description": "Du bist gegen die Schadensart resistent, die mit deiner drakonischen Abstammung assoziiert ist."
+        },
+        {
+          "name": "Drakonischer Flug",
+          "description": "Wenn du die 5. Charakterstufe erreichst, kannst du drakonische Magie kanalisieren, um vorübergehend fliegen zu können. Als Bonusaktion kannst du dir geisterhafte Flügel wachsen lassen, die zehn Minuten erhalten bleiben, oder bis du die Flügel verwirfst (keine Aktion erforderlich) oder kampfunfähig wirst. Mit den Flügeln hast du eine Flugbewegungsrate in Höhe deiner Bewegungsrate. Das Erscheinungsbild deiner Flügel entspricht der Energie deiner Odemwaffe. Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden."
+        }
+      ],
+      "subtypes": null
+    },
+    "Elf": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß",
+      "sizeDetails": {
+        "from": 150,
+        "to": 180,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Die ersten Elfen wurden vom Gott Corellon erschaffen und konnten ihre Gestalt nach ihren Wünschen ändern. Doch diese Fähigkeit verloren sie, als Corellon sie verfluchte, weil sie sich auf die Seite der Göttin Lolth geschlagen hatten. Lolth hatte erfolglos versucht, Corellon zu entmachten. Als Lolth in den Abyss geschleudert wurde, entsagten ihr die meisten Elfen. Corellon vergab ihnen, doch was er ihnen genommen hatte, war für immer verloren. Ihrer Fähigkeit zum Gestaltwandeln beraubt, zogen die Elfen sich in die Feenwildnis zurück, wo sie durch den Einfluss jener Ebene noch unglücklicher wurden. Im Lauf der Zeit führte die Neugier sie auf andere Ebenen, auch in Welten der materiellen Ebene. Elfen haben spitze Ohren und weder Gesichts- noch Körperbehaarung. Sie werden etwa 750 Jahre alt. Um sich auszuruhen, schlafen sie nicht, sondern fallen in eine Art Trance. In diesem Zustand sind sie sich ihrer Umgebung weiterhin bewusst, geben sich jedoch Erinnerungen und Meditationen hin. Eine Umgebung verwandelt die Elfen subtil, wenn sie dort tausend Jahre und mehr verbracht haben, und gewährt ihnen bestimmte Arten von Magie. Drow, Hochelfen und Waldelfen sind Beispiele dafür.",
+      "traits": [
+        {
+          "name": "Dunkelsicht",
+          "description": "Du hast Dunkelsicht mit einer Reichweite von 18 Metern."
+        },
+        {
+          "name": "Elfische Abstammung",
+          "description": "Du bist Teil einer Abstammungslinie, die dir übernatürliche Fähigkeiten gewährt. Wähle aus der Tabelle „Elfische Abstammungen“ eine Abstammung aus. Du erhältst durch diese Linie den Vorzug für die 1. Stufe. Wenn du die 3. und 5. Charakterstufe erreichst, erlernst du einen Zauber eines höheren Grades wie in der Tabelle angegeben. Du hast diesen Zauber stets vorbereitet. Intelligenz, Weisheit oder Charisma ist dein Attribut zum Wirken der Zauber dieser Abstammungslinie (wähle das Attribut aus, wenn du dich für eine Linie entscheidest)."
+        },
+        {
+          "name": "Feenblut",
+          "description": "Du bist bei Rettungswürfen zum Vermeiden oder Beenden des Zustands Bezaubert im Vorteil."
+        },
+        {
+          "name": "Scharfe Sinne",
+          "description": "Du bist in einer der Fertigkeiten Motiv erkennen, Überlebenskunst oder Wahrnehmung geübt."
+        },
+        {
+          "name": "Trance",
+          "description": "Du musst nicht schlafen und kannst nicht magisch zum Einschlafen gebracht werden. Du kannst eine lange Rast in vier Stunden beenden, wenn du diese Stunden in tranceartiger Meditation verbringst. Dabei bleibst du bei Bewusstsein."
+        }
+      ],
+      "subtypes": {
+        "choice": {
+          "text": "Wähle einen Elf-Typ (Elfische Abstammung):",
+          "options": [
+            {
+              "name": "Drow",
+              "cantrips": ["Tanzende Lichter"],
+              "description": "Die Reichweite deiner Dunkelsicht ist auf 36 Meter erhöht. Außerdem kennst du den Zaubertrick Tanzende Lichter. Auf Stufe 3 erhältst du Feenfeuer, auf Stufe 5 Dunkelheit."
+            },
+            {
+              "name": "Hochelf",
+              "cantrips": ["Taschenspielerei"],
+              "description": "Du kennst den Zaubertrick Taschenspielerei. Wann immer du eine lange Rast beendest, kannst du diesen Zaubertrick durch einen anderen Zauberer der Zauberliste des Magiers ersetzen. Auf Stufe 3 erhältst du Magie entdecken, auf Stufe 5 Nebelschritt."
+            },
+            {
+              "name": "Waldelf",
+              "cantrips": ["Druidenkunst"],
+              "description": "Deine Bewegungsrate ist auf zehn Meter erhöht. Außerdem kennst du den Zaubertrick Druidenkunst. Auf Stufe 3 erhältst du Lange Schritte, auf Stufe 5 Spurloses Gehen."
+            }
+          ]
+        }
+      }
+    },
     "Gnom": {
       "creatureType": "Humanoid",
       "size": "Klein",
@@ -12,7 +151,7 @@
         "qty": 9,
         "unit": "Meter"
       },
-      "description": "Gnome sind ein magisches Volk, erschaffen von Göttern der Erfindungen, der Illusionen und des unterirdischen Lebens. Ihre frühesten Vertreter waren aufgrund ihrer Neigung zu einem Dasein in der Abgeschiedenheit von Wäldern und Bauen nahezu unbekannt. Was ihnen an Körpergröße fehlt, machen sie durch Gerissenheit wett. Verfolger verwirren sie mit Fallen und labyrinthartigen Tunneln. Ihre magischen Kenntnisse haben sie von Göttern erhalten, darunter Garl Glittergold, Baervan Wildwanderer und Baravar Schattenmantel, welcher sie inkognito aufsuchte. Durch diese Magie entstanden schließlich die Linien der Waldgnome und der Felsengnome. Gnome sind kleine Leute mit großen Augen und spitzen Ohren. Sie werden etwa 425 Jahre alt. Viele von ihnen schätzen das Gefühl, ein Dach über dem Kopf zu haben – selbst wenn dieses 'Dach' nur ein Hut ist.",
+      "description": "Gnome sind ein magisches Volk, erschaffen von Göttern der Erfindungen, der Illusionen und des unterirdischen Lebens...",
       "traits": [
         {
           "name": "Dunkelsicht",
@@ -38,16 +177,180 @@
             {
               "name": "Felsengnom",
               "cantrips": ["Ausbessern", "Taschenspielerei (Felsengnom)"],
-              "description": "Du kennst die Zaubertricks Ausbessern und Taschenspielerei. Außerdem kannst du zehn Minuten verwenden und den Zaubertrick Taschenspielerei wirken, um ein winziges Uhrwerkgerät (RK 5, 1 TP) zu bauen, beispielsweise ein Spielzeug, einen Anzündler oder eine Spieluhr. Bestimme die Funktion des Geräts, indem du einen Effekt von Taschenspielerei auswählst. Das Gerät erzeugt den Effekt, wann immer du – oder eine andere Kreatur – eine Bonusaktion ausführst, um es mit einer Berührung zu aktivieren. Wenn der ausgewählte Effekt Optionen aufweist, entscheidest du dich für eine dieser Optionen, wenn du das Gerät baust. Beispiel: Wenn du den Entfachen- und Löschen-Effekt des Zaubs auswählst, entscheidest du, ob das Gerät Feuer entfacht oder löscht – das Gerät tut nicht beides. Du kannst bis zu drei dieser Geräte gleichzeitig verfügbar haben. Jedes Gerät fällt entweder acht Stunden nach seiner Erschaffung nach seiner Erschaffung auseinander oder dann auseinander, wenn du es mit einer Berührung (eine Verwenden-Aktion) zerlegst."
+              "description": "Du kennst die Zaubertricks Ausbessern und Taschenspielerei..."
             },
             {
               "name": "Waldgnom",
               "cantrips": ["Einfache Illusion"],
-              "description": "Du kennst den Zaubertrick Einfache Illusion. Außerdem hast du den Zauber Mit Tieren sprechen stets vorbereitet. Die Anzahl der Male, die du den Zauber ohne Zauberplatz wirken kannst, entspricht deinem Übungsbonus. Du erhältst alle verbrauchten Anwendungen nach einer langen Rast zurück. Du kannst den Zauber auch mit einem verfügbaren Zauberplatz wirken."
+              "description": "Du kennst den Zaubertrick Einfache Illusion..."
             }
           ]
         }
       }
+    },
+    "Goliath": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß",
+      "sizeDetails": {
+        "from": 210,
+        "to": 240,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 10.5,
+        "unit": "Meter"
+      },
+      "description": "Als entfernte Verwandte der Riesen überragen Goliaths die meisten anderen Humanoiden. Jeder Goliath trägt die Vorteile der ersten Riesen in sich. Diese Vorteile manifestieren sich als übernatürliche Gaben wie die Größe der riesigen Verwandten anzunehmen. Goliaths haben körperliche Merkmale, die den Riesen ihrer Abstammungslinien entsprechen.",
+      "traits": [
+        {
+          "name": "Große Gestalt",
+          "description": "Ab der 5. Charakterstufe kannst du deine Größe als Bonusaktion in die Kategorie Groß ändern, sofern du genügend Platz dazu hast. Diese Verwandlung bleibt zehn Minuten lang bestehen, oder bis du sie beendest (keine Aktion erforderlich). Während dieser Verwandlung bist du bei Stärkewürfen im Vorteil, und deine Bewegungsrate ist um drei Meter erhöht. Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden."
+        },
+        {
+          "name": "Kräftiger Körperbau",
+          "description": "Du bist bei allen Attributswürfen zum Beenden des Zustands Gepackt im Vorteil. Außerdem gilt bei deiner Traglast die nächsthöhere Größenkategorie."
+        },
+        {
+          "name": "Riesische Abstammung",
+          "description": "Du stammst von Riesen ab. Wähle einen der folgenden Vorzüge als übernatürliche Gabe durch deine Abstammung aus. Die Anzahl der möglichen Anwendungen dieses Vorzugs entspricht deinem Übungsbonus. Du erhältst alle verbrauchten Anwendungen nach einer langen Rast zurück.",
+          "choice": {
+            "text": "Wähle deine riesische Abstammung:",
+            "options": [
+              "Eiseskälte (Frostriese): Wenn du ein Ziel mit einem Angriffswurf triffst und ihm Schaden zufügst, kannst du ihm zusätzlich 1W6 Kälteschaden zufügen und seine Bewegungsrate bis zum Beginn deines nächsten Zugs um drei Meter verringern.",
+              "Felsenfestigkeit (Steinriese): Wenn du Schaden erleidest, kannst du eine Reaktion ausführen, um mit 1W12 zu würfeln. Füge dem Ergebnis deinen Konstitutionsmodifikator hinzu und ziehe die Summe vom erlittenen Schaden ab.",
+              "Feuersbrunst (Feuerriese): Wenn du ein Ziel mit einem Angriffswurf triffst und ihm Schaden zufügst, kannst du ihm zusätzlich 1W10 Feuerschaden zufügen.",
+              "Hügelsturz (Hügelriese): Wenn du eine Kreatur von höchstens großer Größe mit einem Angriffswurf triffst und ihr Schaden zufügst, kannst du sie außerdem umstoßen.",
+              "Sturmdonner (Sturmriese): Wenn du eine Kreatur im Abstand von bis zu 18 Metern von dir Schaden zufügst, kannst du eine Reaktion ausführen, um dieser Kreatur 1W8 Schallschaden zuzufügen.",
+              "Wolkensprung (Wolkriese): Als Bonusaktion kannst du dich auf magische Art bis zu neun Meter weit in einen freien Bereich teleportieren, den du sehen kannst."
+            ]
+          }
+        }
+      ],
+      "subtypes": null
+    },
+    "Halbling": {
+      "creatureType": "Humanoid",
+      "size": "Klein",
+      "sizeDetails": {
+        "from": 60,
+        "to": 90,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Halblinge werden von den Göttern des Lebens, des Heims und des Herds geschätzt und geleitet. Sie neigen dazu, sich mit Familie und Freunden idyllische Zufluchten zu schaffen. Nichtsdestotrotz besitzen viele von ihnen einen mutigen, abenteuerlustigen Geist, der sie auf Entdeckungsreisen führt.",
+      "traits": [
+        {
+          "name": "Angeborene Verstohlenheit",
+          "description": "Du kannst die Verstecken-Aktion auch dann ausführen, wenn du nur von einer Kreatur verdeckt wirst, die mindestens eine Kategorie größer ist als du."
+        },
+        {
+          "name": "Halblingsgewandtheit",
+          "description": "Du kannst dich durch den Bereich jeder Kreatur bewegen, die mindestens eine Kategorie größer ist als du. Du kannst jedoch nicht in ihrem Bereich anhalten."
+        },
+        {
+          "name": "Halblingsglück",
+          "description": "Wenn du bei einer W20-Prüfung eine 1 würfelst, kannst du erneut würfeln. In diesem Fall musst du das neue Ergebnis verwenden."
+        },
+        {
+          "name": "Tapferkeit",
+          "description": "Du bist bei Rettungswürfen zur Vermeidung oder Beenden des Zustands Verängstigt im Vorteil."
+        }
+      ],
+      "subtypes": null
+    },
+    "Mensch": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß oder klein",
+      "sizeDetails": {
+        "from": 120,
+        "to": 210,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Menschen gibt es im ganzen Multiversum. Sie sind so vielfältig wie zahlreich und versuchen, in ihrer Lebensspanne möglichst viel zu erreichen. Ihr Ehrgeiz und ihr Einfallsreichtum werden in vielen Welten geschätzt, respektiert und gefürchtet.",
+      "traits": [
+        {
+          "name": "Einfallsreich",
+          "description": "Du erhältst Heldische Inspiration, wann immer du eine lange Rast beendest."
+        },
+        {
+          "name": "Geschickt",
+          "description": "Du bist in einer Fertigkeit deiner Wahl geübt."
+        },
+        {
+          "name": "Vielseitig",
+          "description": "Du erhältst ein Herkunftstalent deiner Wahl (siehe Kapitel 5). Begabt wird empfohlen."
+        }
+      ],
+      "subtypes": null
+    },
+    "Ork": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß",
+      "sizeDetails": {
+        "from": 180,
+        "to": 210,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Orks führen ihre Schöpfung auf Gruumsh zurück, einen mächtigen Gott, der die endlosen Weiten der materiellen Ebene durchstreifte. Gruumsh hat seine Kinder mit Gaben versehen, die ihnen helfen, durch weite Ebenen, riesige Höhlen und tobende Ozeane zu ziehen und gegen die Monster zu bestehen, die dort lauern.",
+      "traits": [
+        {
+          "name": "Adrenalinrausch",
+          "description": "Du kannst die Spurt-Aktion als Bonusaktion ausführen. In diesem Fall erhältst du temporäre Trefferpunkte in Höhe deines Übungsbonus. Die Häufigkeit, mit der du dieses Merkmal einsetzen kannst, entspricht deinem Übungsbonus. Du erhältst alle verbrauchten Anwendungen nach einer kurzen oder langen Rast zurück."
+        },
+        {
+          "name": "Dunkelsicht",
+          "description": "Du hast Dunkelsicht mit einer Reichweite von 36 Metern."
+        },
+        {
+          "name": "Durchhaltevermögen",
+          "description": "Wenn deine Trefferpunkte auf 0 sinken, du aber nicht direkt stirbst, behältst du stattdessen 1 Trefferpunkt. Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden."
+        }
+      ],
+      "subtypes": null
+    },
+    "Tiefling": {
+      "creatureType": "Humanoid",
+      "size": "Mittelgroß oder klein",
+      "sizeDetails": {
+        "from": 120,
+        "to": 180,
+        "unit": "cm"
+      },
+      "speed": {
+        "qty": 9,
+        "unit": "Meter"
+      },
+      "description": "Tieflinge stammen entweder selbst von den Unteren Ebenen oder haben unholdische Ahnen, die von dort stammen. Sie sind mit Teufeln, Dämonen oder anderen Unholden blutsverwandt. Diese Verbindung mit den Unteren Ebenen ist das unholdische Erbe der Tieflinge.",
+      "traits": [
+        {
+          "name": "Dunkelsicht",
+          "description": "Du hast Dunkelsicht mit einer Reichweite von 18 Metern."
+        },
+        {
+          "name": "Unheiliges Vermächtnis",
+          "description": "Du bist mit den Unteren Ebenen verbunden und erhältst dadurch magische Fähigkeiten. Wähle eine Art des Erbes aus (Abyssisch, Chthonisch oder Infernalisch).",
+          "choice": {
+            "text": "Wähle das unholdische Vermächtnis:",
+            "options": [
+              "Abyssisch: Erbe des Abyss und des Pandäoniums.",
+              "Chthonisch: Erbe von Carceri und Hades.",
+              "Infernalisch: Erbe von Gehenna und den Neun Höllen."
+            ]
+          }
+        }
+      ],
+      "subtypes": null
     }
   }
 }
