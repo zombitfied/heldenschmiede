@@ -354,3 +354,8 @@
     }
   }
 }
+
+
+
+"description": "Wenn du die 3. Charakterstufe erreichst, kannst du dich als Bonusaktion entsprechend einer der Optionen unten verwandeln (wähle bei jeder Verwandlung eine Option aus). Die Verwandlung bleibt eine Minute lang bestehen, oder bis du sie beendest (keine Aktion erforderlich). Du kannst dieses Merkmal erst nach einer langen Rast erneut verwenden. Bis zum Ende der Verwandlung kannst du einmal pro Zug einem Ziel, dem du mit einem Angriff oder einem Zauber Schaden zufügst, zusätzlichen Schaden zufügen. Der zusätzliche Schaden entspricht deinem Übungsbonus und ist entweder gleißend (bei Himmlische Flügel und Inneres Strahlen) oder nekrotisch (bei Nekrotische Spukgestalt).Dies sind deine Verwandlungsoptionen: Himmlische Flügel: Dir wachsen vorübergehend zwei geisterhafte Flügel. Bis zum Ende der Verwandlung hast du eine Flugbewegungsrate in Höhe deiner Bewegungsrate.\n- Inneres Strahlen: Vorübergehend strahlt dir intensives Licht aus Augen und Mund. Für die Wirkungsdauer spendest du in einem Radius von drei Metern helles Licht und in einem Radius von weiteren drei Metern dämmriges Licht, und am Ende jedes deines Züge erleidet jede Kreatur im Abstand von bis zu drei Metern von dir gleißenden Schaden in Höhe deines Übungsbonus.\n- Nekrotische Spukgestalt: Deine Augen werden kurz zu Tümpeln der Dunkelheit, und dir wachsen flugunfähige Flügel. Alle Kreaturen im Abstand von bis zu drei Metern von dir, die nicht mit dir verbündet sind, müssen einen Charismarettungwurf (SG 8 plus dein Charismamodifikator plus dein Übungsbonus) bestehen, oder sie sind bis Ende des nächsten Zugs verängstigt."
+
